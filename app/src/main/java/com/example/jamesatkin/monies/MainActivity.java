@@ -13,20 +13,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*button = (Button) findViewById(R.id.btn_addPurchase);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddPurchaseActivity.class);
-                startActivity(intent);
-            }
-        });*/
     }
 
-    public void doSomething(View view) {
+    public void onAddPurchaseClicked(View view) {
         Intent intent = new Intent(this, AddPurchaseActivity.class);
+        startActivity(intent);
+    }
+
+    public void onViewPurchasesClicked(View view) {
+        Intent intent = new Intent(this, ViewPurchasesActivity.class);
         startActivity(intent);
     }
 }

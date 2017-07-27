@@ -1,13 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_margin="32dp"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_addPurchase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add purchase"
-        android:onClick="doSomething"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_addPurchase"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Add purchase"
+            android:drawableTop="@drawable/ic_add_purchase_black_24dp"
+            android:onClick="onAddPurchaseClicked"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"/>
+
+        <Button
+            android:id="@+id/btn_viewPurchases"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="View purchases"
+            android:onClick="onViewPurchasesClicked"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Button 3"
+
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"/>
+
+        <Button
+            android:id="@+id/btn_4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Button 4"
+
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"/>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
