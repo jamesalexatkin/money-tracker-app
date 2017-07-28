@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_margin="32dp"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -11,26 +11,29 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
+        <com.example.jamesatkin.monies.SquareButton
             android:id="@+id/btn_addPurchase"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Add purchase"
-            android:drawableTop="@drawable/ic_add_purchase_black_24dp"
-            android:onClick="onAddPurchaseClicked"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"/>
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_add_shopping_cart_black_24dp"
+            android:onClick="onAddPurchaseClicked"
+            android:text="Add purchase" />
 
-        <Button
+        <com.example.jamesatkin.monies.SquareButton
             android:id="@+id/btn_viewPurchases"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="View purchases"
-            android:onClick="onViewPurchasesClicked"
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_list_black_24dp"
+            android:onClick="onViewPurchasesClicked"
+            android:text="View purchases" />
 
     </LinearLayout>
 
@@ -40,28 +43,31 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
+        <com.example.jamesatkin.monies.SquareButton
             android:id="@+id/btn_3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Button 3"
-
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"/>
 
-        <Button
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_timeline_black_24dp"
+            android:text="Statistics" />
+
+        <com.example.jamesatkin.monies.SquareButton
             android:id="@+id/btn_4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Button 4"
-
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
+
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_settings_black_24dp"
+            android:text="Settings" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>

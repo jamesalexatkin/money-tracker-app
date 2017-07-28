@@ -27,6 +27,11 @@ public class AddPurchaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_purchase);
+
+        // Add listener to Cost field to make it behave correctly
+        EditText costField = (EditText) findViewById(R.id.txt_Cost);
+        costField.addTextChangedListener(new MoneyTextWatcher(costField));
+        costField.setText("£0.00");
     }
 
     public void onRadioLuxuryClicked(View view) {
@@ -48,6 +53,7 @@ public class AddPurchaseActivity extends AppCompatActivity {
         // Cost
         textField = (EditText) findViewById(R.id.txt_Cost);
         content = textField.getText().toString();
+        String cleanString = content.toString().replaceAll("[£]", "");
         cost = Float.parseFloat(content);
 
         // Date
