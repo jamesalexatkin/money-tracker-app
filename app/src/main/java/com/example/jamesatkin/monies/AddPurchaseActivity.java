@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,6 +24,8 @@ public class AddPurchaseActivity extends AppCompatActivity {
     private String place = "";
     private String comment = "";
 
+    RadioButton radioButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,11 +35,16 @@ public class AddPurchaseActivity extends AppCompatActivity {
         EditText costField = (EditText) findViewById(R.id.txt_Cost);
         costField.addTextChangedListener(new MoneyTextWatcher(costField));
         costField.setText("£0.00");
+
+        //WHY IS THIS NOT WORKING????????????????
+        radioButton = (RadioButton) findViewById(R.id.radio_luxury);
+        radioButton.setChecked(false);
     }
 
     public void onRadioLuxuryClicked(View view) {
         // Toggles value
         luxury = !luxury;
+        radioButton.toggle();
     }
 
     public void onFinishClicked(View view) {
@@ -82,7 +90,9 @@ public class AddPurchaseActivity extends AppCompatActivity {
         content = textField.getText().toString();
         comment = content;
 
-        Purchase purchase = new Purchase(name, cost, date, type, place, luxury, comment);
+        // Add to database
+        Purchase purchase = new Purchase(MainActivity.idCount++, name, cost, date, type, place, luxury, comment);
+        MainActivity.db.addPurchase(purchase);
     }
 
 //    Calendar myCalendar = Calendar.getInstance();

@@ -3,22 +3,31 @@ package com.example.jamesatkin.monies;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ScaleDrawable;
+import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 
 public class MainActivity extends AppCompatActivity {
-    Button button;
+
+    private Button button;
+    public static DatabaseHandler db;
+    public static int idCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        db = new DatabaseHandler(this);
+
         //setButtonSizes();
         //setButtonImages();
+
     }
 
     private void setButtonImages() {

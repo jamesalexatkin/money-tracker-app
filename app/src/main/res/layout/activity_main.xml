@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_add_shopping_cart_black_24dp"
             android:onClick="onAddPurchaseClicked"
-            android:text="Add purchase" />
+            android:text="@string/activity_addPurchase" />
 
         <com.example.jamesatkin.monies.SquareButton
             android:id="@+id/btn_viewPurchases"
@@ -33,7 +33,7 @@
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_list_black_24dp"
             android:onClick="onViewPurchasesClicked"
-            android:text="View purchases" />
+            android:text="@string/activity_viewPurchases" />
 
     </LinearLayout>
 
@@ -53,7 +53,7 @@
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_timeline_black_24dp"
-            android:text="Statistics" />
+            android:text="@string/activity_statistics" />
 
         <com.example.jamesatkin.monies.SquareButton
             android:id="@+id/btn_4"
@@ -65,7 +65,7 @@
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_settings_black_24dp"
-            android:text="Settings" />
+            android:text="@string/activity_settings" />
 
     </LinearLayout>
 

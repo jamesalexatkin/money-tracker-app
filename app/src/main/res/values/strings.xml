@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">monies</string>
+
+    <string name="activity_addPurchase">Add Purchase</string>
+    <string name="activity_viewPurchases">View Purchases</string>
+    <string name="activity_statistics">Statistics</string>
+    <string name="activity_settings">Settings</string>
+
+    <string name="field_name">Name</string>
+    <string name="field_cost">Cost</string>
+    <string name="field_date">Date</string>
+    <string name="field_type">Type</string>
+    <string name="field_luxury">Luxury?</string>
+    <string name="field_place">Place</string>
+    <string name="field_comment">Comment</string>
+
+    <string name="action_finish">Finish</string>
 </resources>
