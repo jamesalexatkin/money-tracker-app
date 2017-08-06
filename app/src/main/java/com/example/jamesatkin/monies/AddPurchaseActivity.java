@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,11 +49,18 @@ public class AddPurchaseActivity extends AppCompatActivity {
     }
 
     public void onFinishClicked(View view) {
-        readFields();
+        //readFields();
         //validateFields();
+
+        // Add to database
+        Purchase purchase = readFields();
+        MainActivity.db.addPurchase(purchase);
+
+        //Display confirmation message
+        Toast.makeText(getApplicationContext(), "Purchase added!", Toast.LENGTH_SHORT).show();
     }
 
-    private void readFields() {
+    private Purchase readFields() {
         // Name
         EditText textField = (EditText) findViewById(R.id.txt_Name);
         String content = textField.getText().toString();
@@ -62,7 +70,7 @@ public class AddPurchaseActivity extends AppCompatActivity {
         textField = (EditText) findViewById(R.id.txt_Cost);
         content = textField.getText().toString();
         String cleanString = content.toString().replaceAll("[£]", "");
-        cost = Float.parseFloat(content);
+        cost = Float.parseFloat(cleanString);
 
         // Date
         textField = (EditText) findViewById(R.id.txt_Date);
@@ -90,9 +98,10 @@ public class AddPurchaseActivity extends AppCompatActivity {
         content = textField.getText().toString();
         comment = content;
 
-        // Add to database
+
+
         Purchase purchase = new Purchase(MainActivity.idCount++, name, cost, date, type, place, luxury, comment);
-        MainActivity.db.addPurchase(purchase);
+        return purchase;
     }
 
 //    Calendar myCalendar = Calendar.getInstance();

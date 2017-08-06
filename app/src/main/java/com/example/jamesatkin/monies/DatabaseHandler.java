@@ -39,14 +39,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_PURCHASES_TABLE = "CREATE TABLE " + TABLE_PURCHASES + "("
-                + KEY_ID + " INTEGER PRIMARY KEY,"
-                + KEY_NAME + " TEXT,"
+                + KEY_ID + " INTEGER PRIMARY KEY, "
+                + KEY_NAME + " TEXT, "
                 + KEY_COST + " FLOAT, "
                 + KEY_DATE + " DATE, "
                 + KEY_TYPE + " TEXT, "
                 + KEY_LUXURY + " BOOLEAN, "
                 + KEY_PLACE + " PLACE, "
-                + KEY_COMMENT + " COMMENT, "
+                + KEY_COMMENT + " COMMENT "
                 + ")";
         db.execSQL(CREATE_PURCHASES_TABLE);
     }
