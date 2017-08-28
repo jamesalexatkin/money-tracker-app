@@ -57,7 +57,7 @@ public class AddPurchaseActivity extends AppCompatActivity {
         MainActivity.db.addPurchase(purchase);
 
         //Display confirmation message
-        Toast.makeText(getApplicationContext(), "Purchase added!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "@string/message_purchaseComplete", Toast.LENGTH_SHORT).show();
     }
 
     private Purchase readFields() {

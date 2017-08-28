@@ -7,8 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.attr.format;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -42,7 +46,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY, "
                 + KEY_NAME + " TEXT, "
                 + KEY_COST + " FLOAT, "
-                + KEY_DATE + " DATE, "
+                + KEY_DATE + " TEXT, "
                 + KEY_TYPE + " TEXT, "
                 + KEY_LUXURY + " BOOLEAN, "
                 + KEY_PLACE + " PLACE, "
@@ -67,7 +71,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, purchase.getName());
         values.put(KEY_COST, purchase.getCost());
-        values.put(KEY_DATE, purchase.getDate().toString());
+        values.put(KEY_DATE, dateToString(purchase.getDate()));
         values.put(KEY_TYPE, purchase.getType());
         values.put(KEY_LUXURY, purchase.getLuxury());
         values.put(KEY_PLACE, purchase.getPlace());
@@ -76,6 +80,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Inserting Row
         db.insert(TABLE_PURCHASES, null, values);
         db.close(); // Closing database connection
+    }
+
+    // Method for converting a date to a string to store in the database
+    private String dateToString(java.util.Date d) {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        String dateString = formatter.format(d);
+        return dateString;
     }
 
     // Getting single purchase
@@ -116,7 +127,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 purchase.setId(Integer.parseInt(cursor.getString(0)));
                 purchase.setName(cursor.getString(1));
                 purchase.setCost(Float.parseFloat(cursor.getString(2)));
-                purchase.setDate(Date.valueOf(cursor.getString(3)));
+
+
+                //purchase.setDate(Date.valueOf(cursor.getString(3)));
+                purchase.setDate(stringToDate(cursor.getString(3)));
                 purchase.setType(cursor.getString(4));
                 purchase.setLuxury(Boolean.valueOf(cursor.getString(5)));
                 purchase.setPlace(cursor.getString(6));
@@ -128,6 +142,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // return contact list
         return purchaseList;
+    }
+
+    private Date stringToDate(String s) {
+        //THIS LINE NOT WORKING!!!!!!!!!!!!!!
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        java.sql.Date sqlDate;
+        try {
+            java.util.Date utilDate = format.parse(s);
+            sqlDate = new Date(utilDate.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // 0 seconds since 1 Jan 1970, so uses this date
+            sqlDate = new Date(0);
+        }
+
+        return sqlDate;
     }
 
     // Getting purchases count
