@@ -14,5 +14,7 @@
     <string name="field_place">Place</string>
     <string name="field_comment">Comment</string>
 
+    <string name="message_purchaseComplete">Purchase added!</string>
+
     <string name="action_finish">Finish</string>
 </resources>
