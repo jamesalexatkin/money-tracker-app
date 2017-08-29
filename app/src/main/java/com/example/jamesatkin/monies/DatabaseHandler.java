@@ -112,10 +112,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Getting all purchases
-    public List<Purchase> getAllPurchases() {
-        List<Purchase> purchaseList = new ArrayList<Purchase>();
+    public ArrayList<Purchase> getAllPurchases() {
+        ArrayList<Purchase> purchaseList = new ArrayList<Purchase>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_PURCHASES;
+        String selectQuery = "SELECT  * FROM " + TABLE_PURCHASES + " ORDER BY " + KEY_DATE + " DESC";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

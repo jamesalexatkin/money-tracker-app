@@ -1,8 +1,13 @@
 package com.example.jamesatkin.monies;
 
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
-class Purchase {
+import static android.R.attr.format;
+
+public class Purchase {
     private int id;
     private String name;
     private float cost;
@@ -88,5 +93,15 @@ class Purchase {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getCostAsString() {
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(Locale.UK);
+        return numberFormat.format(cost);
+    }
+
+    public String getDateAsString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+        return dateFormat.format(date);
     }
 }

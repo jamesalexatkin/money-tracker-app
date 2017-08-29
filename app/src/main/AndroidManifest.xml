@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name=".activities.MainActivity"
             android:label="Dashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,12 +18,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddPurchaseActivity"
+            android:name=".activities.AddPurchaseActivity"
             android:label="Add Purchase"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".activities.MainActivity"></activity>
         <activity
-            android:name=".ViewPurchasesActivity"
+            android:name=".activities.ViewPurchasesActivity"
             android:label="View Purchases"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".activities.MainActivity"></activity>
     </application>
 </manifest>

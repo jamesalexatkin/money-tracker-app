@@ -1,19 +1,19 @@
-package com.example.jamesatkin.monies;
+package com.example.jamesatkin.monies.activities;
 
-import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.jamesatkin.monies.MoneyTextWatcher;
+import com.example.jamesatkin.monies.Purchase;
+import com.example.jamesatkin.monies.R;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class AddPurchaseActivity extends AppCompatActivity {
 
@@ -57,7 +57,7 @@ public class AddPurchaseActivity extends AppCompatActivity {
         MainActivity.db.addPurchase(purchase);
 
         //Display confirmation message
-        Toast.makeText(getApplicationContext(), "@string/message_purchaseComplete", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Purchase added!", Toast.LENGTH_SHORT).show();
     }
 
     private Purchase readFields() {
