@@ -15,52 +15,60 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AddPurchaseActivity extends AppCompatActivity {
+public class AddPurchaseActivity extends PurchaseActivity {
 
-    private String name = "";
+    /*private String name = "";
     private float cost = 0.0f;
     private Date date = new Date();
     private String type = "";
     private boolean luxury = false;
     private String place = "";
-    private String comment = "";
-
-    RadioButton radioButton;
+    private String comment = "";*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_purchase);
+        //setContentView(R.layout.activity_add_purchase);
 
-        // Add listener to Cost field to make it behave correctly
+        //getActionBar().setTitle("Add Purchase");
+
+        name = "";
+        cost = 0.0f;
+        date = new Date();
+        type = "";
+        luxury = false;
+        place = "";
+        comment = "";
+
+        /*// Add listener to Cost field to make it behave correctly
         EditText costField = (EditText) findViewById(R.id.txt_Cost);
         costField.addTextChangedListener(new MoneyTextWatcher(costField));
         costField.setText("£0.00");
 
         //WHY IS THIS NOT WORKING????????????????
         radioButton = (RadioButton) findViewById(R.id.radio_luxury);
-        radioButton.setChecked(false);
+        radioButton.setChecked(false);*/
     }
 
-    public void onRadioLuxuryClicked(View view) {
+    /*public void onRadioLuxuryClicked(View view) {
         // Toggles value
         luxury = !luxury;
         radioButton.toggle();
-    }
+    }*/
 
     public void onFinishClicked(View view) {
         //readFields();
         //validateFields();
 
         // Add to database
-        Purchase purchase = readFields();
+        Purchase purchase = super.readFields();
         MainActivity.db.addPurchase(purchase);
 
         //Display confirmation message
         Toast.makeText(getApplicationContext(), "Purchase added!", Toast.LENGTH_SHORT).show();
     }
 
-    private Purchase readFields() {
+    /*private Purchase readFields() {
         // Name
         EditText textField = (EditText) findViewById(R.id.txt_Name);
         String content = textField.getText().toString();
@@ -102,7 +110,7 @@ public class AddPurchaseActivity extends AppCompatActivity {
 
         Purchase purchase = new Purchase(MainActivity.idCount++, name, cost, date, type, place, luxury, comment);
         return purchase;
-    }
+    }*/
 
 //    Calendar myCalendar = Calendar.getInstance();
 //

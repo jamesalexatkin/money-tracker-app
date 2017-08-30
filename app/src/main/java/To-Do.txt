@@ -1,0 +1,23 @@
+MainActivity
+*Fix icon sizes on buttons
+*Fix buttons issue when turned landscape
+
+AddPurchaseActivity
+/Fix luxury boolean [this will be moved to type]
+*Add validation
+*Add calendar for date
+*Add dropdown for types
+*Change ids so that they are lower case
+
+
+EditPurchaseActivity
+*Pass purchase through to edit screen
+
+
+ViewPurchasesActivity
+*Display items in date order
+
+
+*Create 'AddTypeActivity'
+    -remove luxury boolean from a purchase and move it to type
+

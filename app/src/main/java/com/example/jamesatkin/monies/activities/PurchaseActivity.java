@@ -1,9 +1,12 @@
 package com.example.jamesatkin.monies.activities;
 
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import com.example.jamesatkin.monies.MoneyTextWatcher;
 import com.example.jamesatkin.monies.Purchase;
 import com.example.jamesatkin.monies.R;
 
@@ -11,29 +14,42 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by curly on 29/08/2017.
- */
+public abstract class PurchaseActivity extends AppCompatActivity {
+    protected String name;
+    protected float cost;
+    protected Date date;
+    protected String type;
+    protected boolean luxury;
+    protected String place;
+    protected String comment;
 
-public class PurchaseActivity extends AppCompatActivity {
-    private String name;
-    private float cost;
-    private Date date;
-    private String type;
-    private boolean luxury;
-    private String place;
-    private String comment;
+    protected RadioButton radioButton;
 
-    private EditText textField = (EditText) findViewById(R.id.txt_Name);
-    private
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_purchase);
 
-    RadioButton radioButton;
+        // Add listener to Cost field to make it behave correctly
+        EditText costField = (EditText) findViewById(R.id.txt_Cost);
+        costField.addTextChangedListener(new MoneyTextWatcher(costField));
+        costField.setText("£0.00");
 
+        //WHY IS THIS NOT WORKING????????????????
+        radioButton = (RadioButton) findViewById(R.id.radio_luxury);
+        radioButton.setChecked(false);
 
+    }
 
+    public void onRadioLuxuryClicked(View view) {
+        // Toggles value
+        luxury = !luxury;
+        radioButton.toggle();
+    }
 
+    public abstract void onFinishClicked(View view);
 
-    private Purchase readFields() {
+    public Purchase readFields() {
         // Name
         EditText textField = (EditText) findViewById(R.id.txt_Name);
         String content = textField.getText().toString();

@@ -33,13 +33,13 @@ public class ViewPurchasesActivity extends AppCompatActivity {
         PurchaseAdapter adapter = new PurchaseAdapter(this, purchaseList);
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new OnItemClickListener(){
+        listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?>adapter,View v, int position){
+            public void onItemClick(AdapterView<?> adapter, View v, int position, long id) {
                 Purchase item = (Purchase) adapter.getItemAtPosition(position);
 
                 Intent intent = new Intent(ViewPurchasesActivity.this, EditPurchaseActivity.class);
-                //based on item add info to intent
+                intent.putExtra("Purchase", item);
                 startActivity(intent);
             }
         });
