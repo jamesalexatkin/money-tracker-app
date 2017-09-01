@@ -1,3 +1,10 @@
+/PRIORITY: DECIDE HOW TO STORE DATES SO AS TO STOP THEM MUCKING UP
+/change to long/INTEGER in SQL
+/change string to date everywhere it's used
+/inspect the conversion methods
+
+
+
 MainActivity
 *Fix icon sizes on buttons
 *Fix buttons issue when turned landscape
@@ -11,11 +18,13 @@ AddPurchaseActivity
 
 
 EditPurchaseActivity
-*Pass purchase through to edit screen
+/Pass purchase through to edit screen
+*Add delete functionality
+*Fix update functionality
 
 
 ViewPurchasesActivity
-*Display items in date order
+/Display items in date order
 
 
 *Create 'AddTypeActivity'

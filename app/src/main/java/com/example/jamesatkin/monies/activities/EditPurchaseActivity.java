@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jamesatkin.monies.Purchase;
 import com.example.jamesatkin.monies.R;
@@ -29,7 +30,7 @@ public class EditPurchaseActivity extends PurchaseActivity {
         textView.setText(purchase.getCostAsString());
 
         textView = (EditText) findViewById(R.id.txt_Date);
-        textView.setText(purchase.getDateAsString());
+        textView.setText(purchase.getDateAsString("standard"));
 
         textView = (EditText) findViewById(R.id.txt_Type);
         textView.setText(purchase.getType());
@@ -46,6 +47,9 @@ public class EditPurchaseActivity extends PurchaseActivity {
 
     @Override
     public void onFinishClicked(View view) {
+        Purchase purchase = super.readFields();
+        MainActivity.db.updatePurchase(purchase);
 
+        Toast.makeText(getApplicationContext(), "Purchase updated!", Toast.LENGTH_SHORT).show();
     }
 }

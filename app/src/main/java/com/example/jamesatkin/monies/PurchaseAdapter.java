@@ -44,7 +44,7 @@ public class PurchaseAdapter extends BaseAdapter {
         TextView costTextView = (TextView) rowView.findViewById(R.id.txt_cost);
 
         Purchase purchase = (Purchase) getItem(position);
-        dateTextView.setText(purchase.getDateAsString());
+        dateTextView.setText(purchase.getDateAsString("month"));
         nameTextView.setText(purchase.getName());
         costTextView.setText(purchase.getCostAsString());
 

@@ -46,7 +46,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY, "
                 + KEY_NAME + " TEXT, "
                 + KEY_COST + " FLOAT, "
-                + KEY_DATE + " TEXT, "
+                + KEY_DATE + " INTEGER, "
                 + KEY_TYPE + " TEXT, "
                 + KEY_LUXURY + " BOOLEAN, "
                 + KEY_PLACE + " PLACE, "
@@ -71,7 +71,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, purchase.getName());
         values.put(KEY_COST, purchase.getCost());
-        values.put(KEY_DATE, dateToString(purchase.getDate()));
+        values.put(KEY_DATE, purchase.getDate().getTime());
         values.put(KEY_TYPE, purchase.getType());
         values.put(KEY_LUXURY, purchase.getLuxury());
         values.put(KEY_PLACE, purchase.getPlace());
@@ -102,7 +102,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Purchase purchase = new Purchase(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1),
                 Float.parseFloat(cursor.getString(2)),
-                Date.valueOf(cursor.getString(3)),
+                new Date(Long.parseLong(cursor.getString(3))),
                 cursor.getString(4),
                 cursor.getString(5),
                 Boolean.valueOf(cursor.getString(6)),
@@ -130,7 +130,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
                 //purchase.setDate(Date.valueOf(cursor.getString(3)));
-                purchase.setDate(stringToDate(cursor.getString(3)));
+                purchase.setDate(new Date(Long.parseLong(cursor.getString(3))));
                 purchase.setType(cursor.getString(4));
                 purchase.setLuxury(Boolean.valueOf(cursor.getString(5)));
                 purchase.setPlace(cursor.getString(6));
@@ -178,7 +178,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, purchase.getName());
         values.put(KEY_COST, purchase.getCost());
-        values.put(KEY_DATE, purchase.getDate().toString());
+        values.put(KEY_DATE, purchase.getDate().getTime());
         values.put(KEY_TYPE, purchase.getType());
         values.put(KEY_LUXURY, purchase.getLuxury());
         values.put(KEY_PLACE, purchase.getPlace());
@@ -189,7 +189,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(purchase.getId()) });
     }
 
-    // Deleting single contact
+    // Deleting single purchase
     public void deletePurchase(Purchase purchase) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_PURCHASES, KEY_ID + " = ?",

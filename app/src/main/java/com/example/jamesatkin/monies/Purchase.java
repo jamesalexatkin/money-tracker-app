@@ -145,10 +145,14 @@ public class Purchase implements Parcelable {
         return numberFormat.format(cost);
     }
 
-    public String getDateAsString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
-        return dateFormat.format(date);
+    public String getDateAsString(String type) {
+        switch (type) {
+            case "standard" :
+                return new SimpleDateFormat("dd/MM/yyyy").format(date);
+            case "month" :
+                return new SimpleDateFormat("dd MMM yyyy").format(date);
+            default:
+                return "##/##/####";
+        }
     }
-
-
 }
