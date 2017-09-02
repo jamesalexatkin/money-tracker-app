@@ -14,6 +14,8 @@ import com.example.jamesatkin.monies.R;
 
 public class EditPurchaseActivity extends PurchaseActivity {
 
+    private int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,8 @@ public class EditPurchaseActivity extends PurchaseActivity {
 
         Bundle b = getIntent().getExtras();
         Purchase purchase = b.getParcelable("Purchase");
+
+        id = purchase.getId();
 
         EditText textView = (EditText) findViewById(R.id.txt_Name);
         textView.setText(purchase.getName());
@@ -47,7 +51,7 @@ public class EditPurchaseActivity extends PurchaseActivity {
 
     @Override
     public void onFinishClicked(View view) {
-        Purchase purchase = super.readFields();
+        Purchase purchase = super.readFields(id);
         MainActivity.db.updatePurchase(purchase);
 
         Toast.makeText(getApplicationContext(), "Purchase updated!", Toast.LENGTH_SHORT).show();

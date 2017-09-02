@@ -49,7 +49,7 @@ public abstract class PurchaseActivity extends AppCompatActivity {
 
     public abstract void onFinishClicked(View view);
 
-    public Purchase readFields() {
+    public Purchase readFields(int id) {
         // Name
         EditText textField = (EditText) findViewById(R.id.txt_Name);
         String content = textField.getText().toString();
@@ -89,7 +89,7 @@ public abstract class PurchaseActivity extends AppCompatActivity {
 
 
 
-        Purchase purchase = new Purchase(MainActivity.idCount++, name, cost, date, type, place, luxury, comment);
+        Purchase purchase = new Purchase(id, name, cost, date, type, place, luxury, comment);
         return purchase;
     }
 

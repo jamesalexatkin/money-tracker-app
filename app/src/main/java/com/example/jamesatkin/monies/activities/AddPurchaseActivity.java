@@ -61,7 +61,7 @@ public class AddPurchaseActivity extends PurchaseActivity {
         //validateFields();
 
         // Add to database
-        Purchase purchase = super.readFields();
+        Purchase purchase = super.readFields(MainActivity.idCount++);
         MainActivity.db.addPurchase(purchase);
 
         //Display confirmation message
