@@ -29,6 +29,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:clickable="true"
+            android:editable="false"
             android:hint="@string/field_date"
             android:inputType="date" />
     </LinearLayout>

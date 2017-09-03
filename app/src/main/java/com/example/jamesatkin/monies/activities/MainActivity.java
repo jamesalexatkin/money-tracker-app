@@ -81,4 +81,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ViewPurchasesActivity.class);
         startActivity(intent);
     }
+
+    public void onSettingsClicked(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 }

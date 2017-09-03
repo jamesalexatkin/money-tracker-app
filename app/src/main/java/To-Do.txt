@@ -28,3 +28,6 @@ ViewPurchasesActivity
 *Create 'AddTypeActivity'
     -remove luxury boolean from a purchase and move it to type
 
+Settings
+*Add Import/Export functionality
+*Add AddTypeActivity

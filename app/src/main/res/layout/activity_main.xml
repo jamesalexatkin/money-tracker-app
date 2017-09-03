@@ -61,7 +61,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-
+            android:onClick="onSettingsClicked"
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_settings_black_24dp"

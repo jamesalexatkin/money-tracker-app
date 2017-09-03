@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity"
+        <activity
+            android:name=".activities.MainActivity"
             android:label="Dashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,13 +21,20 @@
         <activity
             android:name=".activities.AddPurchaseActivity"
             android:label="Add Purchase"
-            android:parentActivityName=".activities.MainActivity"></activity>
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.ViewPurchasesActivity"
             android:label="View Purchases"
-            android:parentActivityName=".activities.MainActivity"></activity>
-        <activity android:name=".activities.EditPurchaseActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.EditPurchaseActivity"
             android:label="Edit Purchase"
-            android:parentActivityName=".activities.ViewPurchasesActivity"></activity>
+            android:parentActivityName=".activities.ViewPurchasesActivity" />
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="Settings"
+            android:parentActivityName=".activities.MainActivity">
+        </activity>
     </application>
+
 </manifest>
