@@ -11,7 +11,8 @@
         android:id="@+id/btn_addType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Type"/>
+        android:text="Add Type"
+        android:onClick="onAddTypeClicked"/>
 
     <Button
         android:id="@+id/btn_export"

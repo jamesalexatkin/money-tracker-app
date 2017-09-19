@@ -10,31 +10,34 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.R.attr.format;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
-    private static final String DATABASE_NAME = "purchasesManager";
+    private static final String DATABASE_NAME = "dbManager";
 
-    // Contacts table name
+    // Table names
     private static final String TABLE_PURCHASES = "purchases";
+    private static final String TABLE_TYPES = "types";
 
-    // Contacts Table Columns names
-    private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
-    private static final String KEY_COST = "cost";
-    private static final String KEY_DATE = "date";
-    private static final String KEY_TYPE = "type";
-    private static final String KEY_LUXURY = "luxury";
-    private static final String KEY_PLACE = "place";
-    private static final String KEY_COMMENT = "comment";
+    // Purchases table column names
+    private static final String KEY_PURCHASES_ID = "id";
+    private static final String KEY_PURCHASES_NAME = "name";
+    private static final String KEY_PURCHASES_COST = "cost";
+    private static final String KEY_PURCHASES_DATE = "date";
+    private static final String KEY_PURCHASES_TYPE = "type";
+    private static final String KEY_PURCHASES_LUXURY = "luxury";
+    private static final String KEY_PURCHASES_PLACE = "place";
+    private static final String KEY_PURCHASES_COMMENT = "comment";
+
+    // Types table column names
+    private static final String KEY_TYPES_ID = "id";
+    private static final String KEY_TYPES_NAME = "name";
+    private static final String KEY_TYPES_LUXURY = "luxury";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -43,39 +46,43 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_PURCHASES_TABLE = "CREATE TABLE " + TABLE_PURCHASES + "("
-                + KEY_ID + " INTEGER PRIMARY KEY, "
-                + KEY_NAME + " TEXT, "
-                + KEY_COST + " FLOAT, "
-                + KEY_DATE + " INTEGER, "
-                + KEY_TYPE + " TEXT, "
-                + KEY_LUXURY + " BOOLEAN, "
-                + KEY_PLACE + " PLACE, "
-                + KEY_COMMENT + " COMMENT "
+                + KEY_PURCHASES_ID + " INTEGER PRIMARY KEY, "
+                + KEY_PURCHASES_NAME + " TEXT, "
+                + KEY_PURCHASES_COST + " FLOAT, "
+                + KEY_PURCHASES_DATE + " INTEGER, "
+                + KEY_PURCHASES_TYPE + " TEXT, "
+                + KEY_PURCHASES_LUXURY + " BOOLEAN, "
+                + KEY_PURCHASES_PLACE + " PLACE, "
+                + KEY_PURCHASES_COMMENT + " COMMENT "
                 + ")";
         db.execSQL(CREATE_PURCHASES_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop older table if it existed
+        // Drop older tables if they existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PURCHASES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TYPES);
 
         // Create tables again
         onCreate(db);
     }
+
+
+    // Purchase methods
 
     // Adding new purchase
     public void addPurchase(Purchase purchase) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, purchase.getName());
-        values.put(KEY_COST, purchase.getCost());
-        values.put(KEY_DATE, purchase.getDate().getTime());
-        values.put(KEY_TYPE, purchase.getType());
-        values.put(KEY_LUXURY, purchase.getLuxury());
-        values.put(KEY_PLACE, purchase.getPlace());
-        values.put(KEY_COMMENT, purchase.getComment());
+        values.put(KEY_PURCHASES_NAME, purchase.getName());
+        values.put(KEY_PURCHASES_COST, purchase.getCost());
+        values.put(KEY_PURCHASES_DATE, purchase.getDate().getTime());
+        values.put(KEY_PURCHASES_TYPE, purchase.getType());
+        values.put(KEY_PURCHASES_LUXURY, purchase.getLuxury());
+        values.put(KEY_PURCHASES_PLACE, purchase.getPlace());
+        values.put(KEY_PURCHASES_COMMENT, purchase.getComment());
 
         // Inserting Row
         db.insert(TABLE_PURCHASES, null, values);
@@ -93,8 +100,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Purchase getPurchase(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_PURCHASES, new String[] { KEY_ID,
-                        KEY_NAME, KEY_COST, KEY_DATE, KEY_TYPE, KEY_LUXURY, KEY_PLACE, KEY_COMMENT }, KEY_ID + "=?",
+        Cursor cursor = db.query(TABLE_PURCHASES, new String[] {KEY_PURCHASES_ID,
+                        KEY_PURCHASES_NAME, KEY_PURCHASES_COST, KEY_PURCHASES_DATE, KEY_PURCHASES_TYPE, KEY_PURCHASES_LUXURY, KEY_PURCHASES_PLACE, KEY_PURCHASES_COMMENT}, KEY_PURCHASES_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -115,7 +122,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<Purchase> getAllPurchases() {
         ArrayList<Purchase> purchaseList = new ArrayList<Purchase>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_PURCHASES + " ORDER BY " + KEY_DATE + " DESC";
+        String selectQuery = "SELECT  * FROM " + TABLE_PURCHASES + " ORDER BY " + KEY_PURCHASES_DATE + " DESC";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -176,24 +183,119 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, purchase.getName());
-        values.put(KEY_COST, purchase.getCost());
-        values.put(KEY_DATE, purchase.getDate().getTime());
-        values.put(KEY_TYPE, purchase.getType());
-        values.put(KEY_LUXURY, purchase.getLuxury());
-        values.put(KEY_PLACE, purchase.getPlace());
-        values.put(KEY_COMMENT, purchase.getComment());
+        values.put(KEY_PURCHASES_NAME, purchase.getName());
+        values.put(KEY_PURCHASES_COST, purchase.getCost());
+        values.put(KEY_PURCHASES_DATE, purchase.getDate().getTime());
+        values.put(KEY_PURCHASES_TYPE, purchase.getType());
+        values.put(KEY_PURCHASES_LUXURY, purchase.getLuxury());
+        values.put(KEY_PURCHASES_PLACE, purchase.getPlace());
+        values.put(KEY_PURCHASES_COMMENT, purchase.getComment());
 
         // updating row
-        return db.update(TABLE_PURCHASES, values, KEY_ID + " = ?",
+        return db.update(TABLE_PURCHASES, values, KEY_PURCHASES_ID + " = ?",
                 new String[] { String.valueOf(purchase.getId()) });
     }
 
     // Deleting single purchase
     public void deletePurchase(Purchase purchase) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_PURCHASES, KEY_ID + " = ?",
+        db.delete(TABLE_PURCHASES, KEY_PURCHASES_ID + " = ?",
                 new String[] { String.valueOf(purchase.getId()) });
+        db.close();
+    }
+
+
+
+
+
+
+    // Type methods
+
+    // Adding new type
+    public void addType(Type type) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TYPES_NAME, type.getName());
+        values.put(KEY_TYPES_LUXURY, type.getLuxury());
+
+        // Inserting Row
+        db.insert(TABLE_TYPES, null, values);
+        db.close(); // Closing database connection
+    }
+
+    // Getting single type
+    public Type getType(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_TYPES, new String[] {KEY_TYPES_ID,
+                        KEY_TYPES_NAME, KEY_TYPES_LUXURY}, KEY_TYPES_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Type type = new Type(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1),
+                Boolean.valueOf(cursor.getString(2)));
+         return type;
+    }
+
+    // Getting all types
+    public ArrayList<Type> getAllTypes() {
+        ArrayList<Type> typeList = new ArrayList<Type>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_TYPES;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // Looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Type type = new Type();
+                type.setId(Integer.parseInt(cursor.getString(0)));
+                type.setName(cursor.getString(1));
+
+                //type.setDate(Date.valueOf(cursor.getString(3)));
+                type.setLuxury(Boolean.valueOf(cursor.getString(5)));
+                // Adding type to list
+                typeList.add(type);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return typeList;
+    }
+
+    // Getting types count
+    public int getTypesCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_TYPES;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        cursor.close();
+
+        // Return count
+        return cursor.getCount();
+    }
+
+    // Updating single type
+    public int updateType(Type type) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TYPES_NAME, type.getName());
+        values.put(KEY_TYPES_LUXURY, type.getLuxury());
+
+        // updating row
+        return db.update(TABLE_TYPES, values, KEY_TYPES_ID + " = ?",
+                new String[] { String.valueOf(type.getId()) });
+    }
+
+    // Deleting single type
+    public void deleteType(Type type) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TYPES, KEY_TYPES_ID + " = ?",
+                new String[] { String.valueOf(type.getId()) });
         db.close();
     }
 }

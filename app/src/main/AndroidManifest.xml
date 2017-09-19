@@ -33,8 +33,8 @@
         <activity
             android:name=".activities.SettingsActivity"
             android:label="Settings"
-            android:parentActivityName=".activities.MainActivity">
-        </activity>
+            android:parentActivityName=".activities.MainActivity"></activity>
+        <activity android:name=".activities.AddTypeActivity"></activity>
     </application>
 
 </manifest>

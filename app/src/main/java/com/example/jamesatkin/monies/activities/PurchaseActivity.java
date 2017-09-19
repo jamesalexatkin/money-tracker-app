@@ -49,11 +49,7 @@ public abstract class PurchaseActivity extends AppCompatActivity {
         radioButton.setChecked(false);
     }
 
-    public void onRadioLuxuryClicked(View view) {
-        // Toggles value
-        luxury = !luxury;
-        radioButton.toggle();
-    }
+
 
     public abstract void onFinishClicked(View view);
 

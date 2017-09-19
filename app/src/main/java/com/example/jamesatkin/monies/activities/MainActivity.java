@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button;
     public static DatabaseHandler db;
-    public static int idCount = 0;
+    public static int purchaseIdCount = 0;
+    public static int typeIdCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         //setButtonSizes();
         //setButtonImages();
-
     }
 
     private void setButtonImages() {
