@@ -6,6 +6,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +37,11 @@ public class EditPurchaseActivity extends PurchaseActivity {
         textView = (EditText) findViewById(R.id.txt_Date);
         textView.setText(purchase.getDateAsString("standard"));
 
-        textView = (EditText) findViewById(R.id.txt_Type);
-        textView.setText(purchase.getType());
+//        textView = (EditText) findViewById(R.id.txt_Type);
+//        textView.setText(purchase.getType());
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_Type);
+        // SEARCH FOR THE RIGHT TYPE TO STORE SO CAN GET ID
+        spinner.setSelection(purchase.getType());
 
         RadioButton radio = (RadioButton) findViewById(R.id.radio_luxury);
         radio.setChecked(purchase.getLuxury());

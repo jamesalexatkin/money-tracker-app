@@ -11,13 +11,26 @@ import android.widget.Button;
 
 import com.example.jamesatkin.monies.DatabaseHandler;
 import com.example.jamesatkin.monies.R;
+import com.example.jamesatkin.monies.Type;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
     public static DatabaseHandler db;
+    public static String[] typeNames;
     public static int purchaseIdCount = 0;
     public static int typeIdCount = 0;
+
+    public static String[] getTypeNames() {
+        ArrayList<Type> typesList = db.getAllTypes();
+        String[] typeNamesArray = new String[typesList.size()];
+        for (int i = 0; i < typeNamesArray.length; i++) {
+            typeNamesArray[i] = typesList.get(i).getName();
+        }
+        return typeNamesArray;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db = new DatabaseHandler(this);
+        typeNames = getTypeNames();
 
         //setButtonSizes();
         //setButtonImages();
@@ -85,5 +99,16 @@ public class MainActivity extends AppCompatActivity {
     public void onSettingsClicked(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    public static int getTypeId(String searchKey) {
+        if (searchKey != null) {
+            for (int i = 0; i < typeNames.length; i++) {
+                if (typeNames[i] == searchKey) {
+                    return i;
+                }
+            }
+        }
+        return 0;
     }
 }

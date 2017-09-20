@@ -15,7 +15,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Database Name
     private static final String DATABASE_NAME = "dbManager";
@@ -50,12 +50,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_PURCHASES_NAME + " TEXT, "
                 + KEY_PURCHASES_COST + " FLOAT, "
                 + KEY_PURCHASES_DATE + " INTEGER, "
-                + KEY_PURCHASES_TYPE + " TEXT, "
+                + KEY_PURCHASES_TYPE + " INTEGER, "
                 + KEY_PURCHASES_LUXURY + " BOOLEAN, "
                 + KEY_PURCHASES_PLACE + " PLACE, "
                 + KEY_PURCHASES_COMMENT + " COMMENT "
                 + ")";
+        String CREATE_TYPES_TABLE = "CREATE TABLE " + TABLE_TYPES + "("
+                + KEY_TYPES_ID + " INTEGER PRIMARY KEY, "
+                + KEY_TYPES_NAME + " TEXT, "
+                + KEY_TYPES_LUXURY + " BOOLEAN "
+                + ")";
         db.execSQL(CREATE_PURCHASES_TABLE);
+        db.execSQL(CREATE_TYPES_TABLE);
     }
 
     @Override
@@ -110,7 +116,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 cursor.getString(1),
                 Float.parseFloat(cursor.getString(2)),
                 new Date(Long.parseLong(cursor.getString(3))),
-                cursor.getString(4),
+                Integer.parseInt(cursor.getString(4)),
                 cursor.getString(5),
                 Boolean.valueOf(cursor.getString(6)),
                 cursor.getString(7));
@@ -138,7 +144,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
                 //purchase.setDate(Date.valueOf(cursor.getString(3)));
                 purchase.setDate(new Date(Long.parseLong(cursor.getString(3))));
-                purchase.setType(cursor.getString(4));
+                purchase.setType(Integer.parseInt(cursor.getString(4)));
                 purchase.setLuxury(Boolean.valueOf(cursor.getString(5)));
                 purchase.setPlace(cursor.getString(6));
                 purchase.setComment(cursor.getString(7));
@@ -257,7 +263,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 type.setName(cursor.getString(1));
 
                 //type.setDate(Date.valueOf(cursor.getString(3)));
-                type.setLuxury(Boolean.valueOf(cursor.getString(5)));
+                type.setLuxury(Boolean.valueOf(cursor.getString(2)));
                 // Adding type to list
                 typeList.add(type);
             } while (cursor.moveToNext());

@@ -30,6 +30,7 @@ public class AddTypeActivity extends AppCompatActivity {
         // Add to database
         Type type = readFields(MainActivity.typeIdCount++);
         MainActivity.db.addType(type);
+        MainActivity.typeNames = MainActivity.getTypeNames();
 
         //Display confirmation message
         Toast.makeText(getApplicationContext(), "Type added!", Toast.LENGTH_SHORT).show();

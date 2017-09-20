@@ -3,6 +3,8 @@
 /change string to date everywhere it's used
 /inspect the conversion methods
 
+//CHANGE TYPE TO BE STORED AS INT IN PURCHASE, NOT STRING
+
 MainActivity
 *Fix icon sizes on buttons
 *Fix buttons issue when turned landscape

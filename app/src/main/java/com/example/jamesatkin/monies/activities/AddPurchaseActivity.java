@@ -3,16 +3,20 @@ package com.example.jamesatkin.monies.activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.jamesatkin.monies.MoneyTextWatcher;
 import com.example.jamesatkin.monies.Purchase;
 import com.example.jamesatkin.monies.R;
+import com.example.jamesatkin.monies.Type;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class AddPurchaseActivity extends PurchaseActivity {
@@ -35,10 +39,12 @@ public class AddPurchaseActivity extends PurchaseActivity {
         name = "";
         cost = 0.0f;
         date = new Date();
-        type = "";
+        type = 0;
         luxury = false;
         place = "";
         comment = "";
+
+
 
         /*// Add listener to Cost field to make it behave correctly
         EditText costField = (EditText) findViewById(R.id.txt_Cost);

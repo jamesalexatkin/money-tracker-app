@@ -6,17 +6,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.Time;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.jamesatkin.monies.MoneyTextWatcher;
 import com.example.jamesatkin.monies.Purchase;
 import com.example.jamesatkin.monies.R;
+import com.example.jamesatkin.monies.Type;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -25,7 +29,7 @@ public abstract class PurchaseActivity extends AppCompatActivity {
     protected String name;
     protected float cost;
     protected Date date;
-    protected String type;
+    protected int type;
     protected boolean luxury;
     protected String place;
     protected String comment;
@@ -41,6 +45,12 @@ public abstract class PurchaseActivity extends AppCompatActivity {
         EditText costField = (EditText) findViewById(R.id.txt_Cost);
         costField.addTextChangedListener(new MoneyTextWatcher(costField));
         costField.setText("£0.00");
+
+
+        // Set up spinner
+        Spinner dropdown = (Spinner)findViewById(R.id.spinner_Type);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.typeNames);
+        dropdown.setAdapter(adapter);
 
         //WHY IS THIS NOT WORKING????????????????
         radioButton = (RadioButton)
@@ -75,9 +85,14 @@ public abstract class PurchaseActivity extends AppCompatActivity {
         }
 
         // Type
-        textField = (EditText) findViewById(R.id.txt_Type);
-        content = textField.getText().toString();
-        type = content;
+//        textField = (EditText) findViewById(R.id.txt_Type);
+//        content = textField.getText().toString();
+//        type = content;
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_Type);
+        content = spinner.getSelectedItem().toString();
+
+        type = MainActivity.getTypeId(content);
 
         // No need to set luxury as that is done on radio button click
 

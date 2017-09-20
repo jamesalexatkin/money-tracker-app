@@ -15,7 +15,7 @@ public class Purchase implements Parcelable {
     private String name;
     private float cost;
     private Date date;
-    private String type;
+    private int type;
     private String place;
     private boolean luxury;
     private String comment;
@@ -23,7 +23,7 @@ public class Purchase implements Parcelable {
     public Purchase() {
     }
 
-    public Purchase(int id, String name, float cost, Date date, String type, String place, boolean luxury, String comment) {
+    public Purchase(int id, String name, float cost, Date date, int type, String place, boolean luxury, String comment) {
         this.id = id;
         this.name = name;
         this.cost = cost;
@@ -40,7 +40,7 @@ public class Purchase implements Parcelable {
         this.cost = src.readFloat();
         // Reads date from long
         this.date = new Date(src.readLong());
-        this.type = src.readString();
+        this.type = src.readInt();
         this.place = src.readString();
         // luxury == true if byte != 0
         this.luxury = src.readByte() != 0;
@@ -54,7 +54,7 @@ public class Purchase implements Parcelable {
         dest.writeFloat(cost);
         // Writes date as long, requires converting when read
         dest.writeLong(date.getTime());
-        dest.writeString(type);
+        dest.writeInt(type);
         dest.writeString(place);
         // If luxury == true, byte == 1
         dest.writeByte((byte) (luxury ? 1 : 0));
@@ -92,7 +92,7 @@ public class Purchase implements Parcelable {
         return date;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
@@ -124,7 +124,7 @@ public class Purchase implements Parcelable {
         this.date = date;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
