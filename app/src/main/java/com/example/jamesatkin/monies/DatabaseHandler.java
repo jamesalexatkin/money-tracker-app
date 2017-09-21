@@ -254,9 +254,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Type type = new Type();
                 type.setId(Integer.parseInt(cursor.getString(0)));
                 type.setName(cursor.getString(1));
-
-                //type.setDate(Date.valueOf(cursor.getString(3)));
-                type.setLuxury(Boolean.valueOf(cursor.getString(2)));
+                // For some reason, boolean is stored as 0 or 1, so compares int value of string to 1 to check if true or false
+                type.setLuxury(Boolean.valueOf(Integer.parseInt(cursor.getString(2)) == 1));
                 // Adding type to list
                 typeList.add(type);
             } while (cursor.moveToNext());

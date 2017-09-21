@@ -16,7 +16,7 @@ AddPurchaseActivity
 /Add dropdown for types
 *Change textview ids so that they are lower case
 /Abstract the layout page
-*Remove luxury field
+/Remove luxury field
 
 
 EditPurchaseActivity
@@ -30,8 +30,8 @@ ViewPurchasesActivity
 
 
 /Create 'AddTypeActivity'
-    -remove luxury boolean from a purchase and move it to type
-    -fix radio button
+/remove luxury boolean from a purchase and move it to type
+/fix radio button
 
 ManageTypesActivity
 *Change ListView to RecyclerView

@@ -44,7 +44,8 @@ public class TypeAdapter extends BaseAdapter {
 
         Type type = (Type) getItem(position);
         nameTextView.setText(type.getName());
-        luxuryTextView.setText("Luxury: " + type.getLuxury());
+        String s = "Luxury: " + type.getLuxury();
+        luxuryTextView.setText(s);
 
         return rowView;
     }
