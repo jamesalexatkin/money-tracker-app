@@ -33,8 +33,21 @@
         <activity
             android:name=".activities.SettingsActivity"
             android:label="Settings"
-            android:parentActivityName=".activities.MainActivity"></activity>
-        <activity android:name=".activities.AddTypeActivity"></activity>
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.AddTypeActivity"
+            android:label="Add Type"
+            android:parentActivityName=".activities.ManageTypesActivity" />
+        <activity
+            android:name=".activities.ManageTypesActivity"
+            android:label="Manage Types"
+            android:parentActivityName=".activities.SettingsActivity" />
+        <activity
+            android:name=".activities.EditTypeActivity"
+            android:label="Edit Type"
+            android:parentActivityName=".activities.ManageTypesActivity" />
+        <activity
+            android:name=".activities.TypeActivity" />
     </application>
 
 </manifest>

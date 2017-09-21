@@ -13,8 +13,8 @@ AddPurchaseActivity
 /Fix luxury boolean [this will be moved to type]
 *Add validation
 *Add calendar for date
-*Add dropdown for types
-*Change ids so that they are lower case
+/Add dropdown for types
+*Change textview ids so that they are lower case
 
 
 EditPurchaseActivity
@@ -29,7 +29,17 @@ ViewPurchasesActivity
 
 /Create 'AddTypeActivity'
     -remove luxury boolean from a purchase and move it to type
+    -fix radio button
+
+ManageTypesActivity
+*Change ListView to RecyclerView
+*Fix floating action button being green
 
 Settings
 *Add Import/Export functionality
 /Add AddTypeActivity
+*Redo style to look like a settings page
+
+App
+*Fix app name
+*Get an app icon

@@ -11,24 +11,18 @@ import com.example.jamesatkin.monies.Purchase;
 import com.example.jamesatkin.monies.R;
 import com.example.jamesatkin.monies.Type;
 
-public class AddTypeActivity extends AppCompatActivity {
-
-    private String name;
-    private boolean luxury;
-
-    private RadioButton radioButton;
+public class AddTypeActivity extends TypeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_type);
     }
 
     public void onFinishClicked(View view) {
         //validateFields();
 
         // Add to database
-        Type type = readFields(MainActivity.typeIdCount++);
+        Type type = super.readFields(MainActivity.typeIdCount++);
         MainActivity.db.addType(type);
         MainActivity.typeNames = MainActivity.getTypeNames();
 
@@ -36,21 +30,5 @@ public class AddTypeActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Type added!", Toast.LENGTH_SHORT).show();
     }
 
-    public void onRadioLuxuryClicked(View view) {
-        // Toggles value
-        luxury = !luxury;
-        radioButton.toggle();
-    }
 
-    private Type readFields(int id) {
-        // Name
-        EditText textField = (EditText) findViewById(R.id.txt_Name);
-        String content = textField.getText().toString();
-        name = content;
-
-        // No need to set luxury as that is done on radio button click
-
-        Type type = new Type(id, name, luxury);
-        return type;
-    }
 }

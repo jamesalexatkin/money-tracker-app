@@ -111,4 +111,9 @@ public abstract class PurchaseActivity extends AppCompatActivity {
         return purchase;
     }
 
+    public void onRadioLuxuryClicked(View view) {
+        // Toggles value
+        luxury = !luxury;
+        radioButton.toggle();
+    }
 }

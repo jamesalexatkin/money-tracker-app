@@ -15,8 +15,8 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
     }
 
-    public void onAddTypeClicked(View view) {
-        Intent intent = new Intent(this, AddTypeActivity.class);
+    public void onManageTypesClicked(View view) {
+        Intent intent = new Intent(this, ManageTypesActivity.class);
         startActivity(intent);
     }
 }

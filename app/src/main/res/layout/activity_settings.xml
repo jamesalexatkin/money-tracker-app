@@ -8,11 +8,11 @@
     tools:context="com.example.jamesatkin.monies.activities.SettingsActivity">
 
     <Button
-        android:id="@+id/btn_addType"
+        android:id="@+id/btn_manageTypes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Type"
-        android:onClick="onAddTypeClicked"/>
+        android:text="Manage Types"
+        android:onClick="onManageTypesClicked"/>
 
     <Button
         android:id="@+id/btn_export"

@@ -1,6 +1,13 @@
 package com.example.jamesatkin.monies;
 
-public class Type {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.Date;
+
+import static android.R.attr.type;
+
+public class Type implements Parcelable {
     private int id;
     private String name;
     private boolean luxury;
@@ -11,6 +18,36 @@ public class Type {
         this.id = id;
         this.name = name;
         this.luxury = luxury;
+    }
+
+    public Type(Parcel src) {
+        this.id = src.readInt();
+        this.name = src.readString();
+        // luxury == true if byte != 0
+        this.luxury = src.readByte() != 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        // If luxury == true, byte == 1
+        dest.writeByte((byte) (luxury ? 1 : 0));
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Type createFromParcel(Parcel in) {
+            return new Type(in);
+        }
+
+        public Type[] newArray(int size) {
+            return new Type[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public int getId() {
