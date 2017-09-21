@@ -15,6 +15,7 @@ AddPurchaseActivity
 *Add calendar for date
 /Add dropdown for types
 *Change textview ids so that they are lower case
+*Abstract the layout page
 
 
 EditPurchaseActivity

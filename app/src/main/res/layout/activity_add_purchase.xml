@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/field_name"
-        android:inputType="text" />
+        android:inputType="text"
+        android:layout_margin="8dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/field_cost"
-            android:inputType="number" />
+            android:inputType="number"
+            android:layout_margin="8dp"/>
 
         <EditText
             android:id="@+id/txt_Date"
@@ -32,7 +34,8 @@
             android:clickable="true"
             android:editable="false"
             android:hint="@string/field_date"
-            android:inputType="date" />
+            android:inputType="date"
+            android:layout_margin="8dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -50,7 +53,8 @@
         <Spinner
             android:id="@+id/spinner_Type"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"/>
 
         <RadioButton
             android:id="@+id/radio_luxury"
@@ -58,7 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onRadioLuxuryClicked"
-            android:text="@string/field_luxury" />
+            android:text="@string/field_luxury"
+            android:layout_margin="8dp"/>
     </LinearLayout>
 
     <EditText
@@ -66,20 +71,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/field_place"
-        android:inputType="text" />
+        android:inputType="text"
+        android:layout_margin="8dp"/>
 
     <EditText
         android:id="@+id/txt_Comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/field_comment"
-        android:inputType="text" />
+        android:inputType="text"
+        android:layout_margin="8dp"/>
 
     <Button
         android:id="@+id/btn_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onFinishClicked"
-        android:text="@string/action_finish" />
+        android:text="@string/action_finish"
+        android:layout_margin="8dp"/>
 
 </LinearLayout>
