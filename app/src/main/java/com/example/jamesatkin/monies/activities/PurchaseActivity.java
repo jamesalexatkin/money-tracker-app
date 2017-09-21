@@ -30,16 +30,13 @@ public abstract class PurchaseActivity extends AppCompatActivity {
     protected float cost;
     protected Date date;
     protected int type;
-    protected boolean luxury;
     protected String place;
     protected String comment;
-
-    protected RadioButton radioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_purchase);
+        setContentView(R.layout.activity_purchase);
 
         // Add listener to Cost field to make it behave correctly
         EditText costField = (EditText) findViewById(R.id.txt_Cost);
@@ -51,15 +48,7 @@ public abstract class PurchaseActivity extends AppCompatActivity {
         Spinner dropdown = (Spinner)findViewById(R.id.spinner_Type);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.typeNames);
         dropdown.setAdapter(adapter);
-
-        //WHY IS THIS NOT WORKING????????????????
-        radioButton = (RadioButton)
-
-                findViewById(R.id.radio_luxury);
-        radioButton.setChecked(false);
     }
-
-
 
     public abstract void onFinishClicked(View view);
 
@@ -85,16 +74,10 @@ public abstract class PurchaseActivity extends AppCompatActivity {
         }
 
         // Type
-//        textField = (EditText) findViewById(R.id.txt_Type);
-//        content = textField.getText().toString();
-//        type = content;
-
         Spinner spinner = (Spinner) findViewById(R.id.spinner_Type);
         content = spinner.getSelectedItem().toString();
 
         type = MainActivity.getTypeId(content);
-
-        // No need to set luxury as that is done on radio button click
 
         // Place
         textField = (EditText) findViewById(R.id.txt_Place);
@@ -107,13 +90,7 @@ public abstract class PurchaseActivity extends AppCompatActivity {
         comment = content;
 
 
-        Purchase purchase = new Purchase(id, name, cost, date, type, place, luxury, comment);
+        Purchase purchase = new Purchase(id, name, cost, date, type, place, comment);
         return purchase;
-    }
-
-    public void onRadioLuxuryClicked(View view) {
-        // Toggles value
-        luxury = !luxury;
-        radioButton.toggle();
     }
 }

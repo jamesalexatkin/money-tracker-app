@@ -21,51 +21,20 @@ import java.util.Date;
 
 public class AddPurchaseActivity extends PurchaseActivity {
 
-    /*private String name = "";
-    private float cost = 0.0f;
-    private Date date = new Date();
-    private String type = "";
-    private boolean luxury = false;
-    private String place = "";
-    private String comment = "";*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_add_purchase);
-
-        //getActionBar().setTitle("Add Purchase");
 
         name = "";
         cost = 0.0f;
         date = new Date();
         type = 0;
-        luxury = false;
         place = "";
         comment = "";
-
-
-
-        /*// Add listener to Cost field to make it behave correctly
-        EditText costField = (EditText) findViewById(R.id.txt_Cost);
-        costField.addTextChangedListener(new MoneyTextWatcher(costField));
-        costField.setText("£0.00");
-
-        //WHY IS THIS NOT WORKING????????????????
-        radioButton = (RadioButton) findViewById(R.id.radio_luxury);
-        radioButton.setChecked(false);*/
     }
 
-    /*public void onRadioLuxuryClicked(View view) {
-        // Toggles value
-        luxury = !luxury;
-        radioButton.toggle();
-    }*/
-
     public void onFinishClicked(View view) {
-        //readFields();
-        //validateFields();
-
         // Add to database
         Purchase purchase = super.readFields(MainActivity.purchaseIdCount++);
         MainActivity.db.addPurchase(purchase);
@@ -73,50 +42,6 @@ public class AddPurchaseActivity extends PurchaseActivity {
         //Display confirmation message
         Toast.makeText(getApplicationContext(), "Purchase added!", Toast.LENGTH_SHORT).show();
     }
-
-    /*private Purchase readFields() {
-        // Name
-        EditText textField = (EditText) findViewById(R.id.txt_Name);
-        String content = textField.getText().toString();
-        name = content;
-
-        // Cost
-        textField = (EditText) findViewById(R.id.txt_Cost);
-        content = textField.getText().toString();
-        String cleanString = content.toString().replaceAll("[£]", "");
-        cost = Float.parseFloat(cleanString);
-
-        // Date
-        textField = (EditText) findViewById(R.id.txt_Date);
-        content = textField.getText().toString();
-        try {
-            date = new SimpleDateFormat("dd/MM/yyyy").parse(content);
-        } catch (ParseException e) {
-            //do something with exception
-        }
-
-        // Type
-        textField = (EditText) findViewById(R.id.txt_Type);
-        content = textField.getText().toString();
-        type = content;
-
-        // No need to set luxury as that is done on radio button click
-
-        // Place
-        textField = (EditText) findViewById(R.id.txt_Place);
-        content = textField.getText().toString();
-        place = content;
-
-        // Comment
-        textField = (EditText) findViewById(R.id.txt_Comment);
-        content = textField.getText().toString();
-        comment = content;
-
-
-
-        Purchase purchase = new Purchase(MainActivity.idCount++, name, cost, date, type, place, luxury, comment);
-        return purchase;
-    }*/
 
 //    Calendar myCalendar = Calendar.getInstance();
 //

@@ -28,9 +28,6 @@ public class EditTypeActivity extends TypeActivity {
 
         EditText textView = (EditText) findViewById(R.id.txt_Name);
         textView.setText(type.getName());
-
-        RadioButton radio = (RadioButton) findViewById(R.id.radio_luxury);
-        radio.setChecked(type.getLuxury());
     }
 
     @Override

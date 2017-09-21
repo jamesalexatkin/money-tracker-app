@@ -40,11 +40,8 @@ public class EditPurchaseActivity extends PurchaseActivity {
 //        textView = (EditText) findViewById(R.id.txt_Type);
 //        textView.setText(purchase.getType());
         Spinner spinner = (Spinner) findViewById(R.id.spinner_Type);
-        // SEARCH FOR THE RIGHT TYPE TO STORE SO CAN GET ID
+        // Searches for the right type so as the id can be set properly
         spinner.setSelection(purchase.getType());
-
-        RadioButton radio = (RadioButton) findViewById(R.id.radio_luxury);
-        radio.setChecked(purchase.getLuxury());
 
         textView = (EditText) findViewById(R.id.txt_Place);
         textView.setText(purchase.getPlace());

@@ -5,13 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 
-import com.example.jamesatkin.monies.Purchase;
 import com.example.jamesatkin.monies.R;
 import com.example.jamesatkin.monies.Type;
-
-import static android.R.attr.type;
 
 public abstract class TypeActivity extends AppCompatActivity {
 
@@ -24,7 +20,7 @@ public abstract class TypeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_type);
+        setContentView(R.layout.activity_type);
     }
 
     public abstract void onFinishClicked(View view);

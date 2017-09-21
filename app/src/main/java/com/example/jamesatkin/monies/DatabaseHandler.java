@@ -15,7 +15,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     // Database Name
     private static final String DATABASE_NAME = "dbManager";
@@ -30,7 +30,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_PURCHASES_COST = "cost";
     private static final String KEY_PURCHASES_DATE = "date";
     private static final String KEY_PURCHASES_TYPE = "type";
-    private static final String KEY_PURCHASES_LUXURY = "luxury";
     private static final String KEY_PURCHASES_PLACE = "place";
     private static final String KEY_PURCHASES_COMMENT = "comment";
 
@@ -51,7 +50,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_PURCHASES_COST + " FLOAT, "
                 + KEY_PURCHASES_DATE + " INTEGER, "
                 + KEY_PURCHASES_TYPE + " INTEGER, "
-                + KEY_PURCHASES_LUXURY + " BOOLEAN, "
                 + KEY_PURCHASES_PLACE + " PLACE, "
                 + KEY_PURCHASES_COMMENT + " COMMENT "
                 + ")";
@@ -86,7 +84,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_PURCHASES_COST, purchase.getCost());
         values.put(KEY_PURCHASES_DATE, purchase.getDate().getTime());
         values.put(KEY_PURCHASES_TYPE, purchase.getType());
-        values.put(KEY_PURCHASES_LUXURY, purchase.getLuxury());
         values.put(KEY_PURCHASES_PLACE, purchase.getPlace());
         values.put(KEY_PURCHASES_COMMENT, purchase.getComment());
 
@@ -107,7 +104,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_PURCHASES, new String[] {KEY_PURCHASES_ID,
-                        KEY_PURCHASES_NAME, KEY_PURCHASES_COST, KEY_PURCHASES_DATE, KEY_PURCHASES_TYPE, KEY_PURCHASES_LUXURY, KEY_PURCHASES_PLACE, KEY_PURCHASES_COMMENT}, KEY_PURCHASES_ID + "=?",
+                        KEY_PURCHASES_NAME, KEY_PURCHASES_COST, KEY_PURCHASES_DATE, KEY_PURCHASES_TYPE, KEY_PURCHASES_PLACE, KEY_PURCHASES_COMMENT}, KEY_PURCHASES_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -118,9 +115,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new Date(Long.parseLong(cursor.getString(3))),
                 Integer.parseInt(cursor.getString(4)),
                 cursor.getString(5),
-                Boolean.valueOf(cursor.getString(6)),
-                cursor.getString(7));
-        // return contact
+                cursor.getString(6));
         return purchase;
     }
 
@@ -145,9 +140,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 //purchase.setDate(Date.valueOf(cursor.getString(3)));
                 purchase.setDate(new Date(Long.parseLong(cursor.getString(3))));
                 purchase.setType(Integer.parseInt(cursor.getString(4)));
-                purchase.setLuxury(Boolean.valueOf(cursor.getString(5)));
-                purchase.setPlace(cursor.getString(6));
-                purchase.setComment(cursor.getString(7));
+                purchase.setPlace(cursor.getString(5));
+                purchase.setComment(cursor.getString(6));
                 // Adding purchase to list
                 purchaseList.add(purchase);
             } while (cursor.moveToNext());
@@ -193,7 +187,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_PURCHASES_COST, purchase.getCost());
         values.put(KEY_PURCHASES_DATE, purchase.getDate().getTime());
         values.put(KEY_PURCHASES_TYPE, purchase.getType());
-        values.put(KEY_PURCHASES_LUXURY, purchase.getLuxury());
         values.put(KEY_PURCHASES_PLACE, purchase.getPlace());
         values.put(KEY_PURCHASES_COMMENT, purchase.getComment());
 

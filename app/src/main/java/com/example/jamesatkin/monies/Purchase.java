@@ -17,20 +17,19 @@ public class Purchase implements Parcelable {
     private Date date;
     private int type;
     private String place;
-    private boolean luxury;
+
     private String comment;
 
     public Purchase() {
     }
 
-    public Purchase(int id, String name, float cost, Date date, int type, String place, boolean luxury, String comment) {
+    public Purchase(int id, String name, float cost, Date date, int type, String place, String comment) {
         this.id = id;
         this.name = name;
         this.cost = cost;
         this.date = date;
         this.type = type;
         this.place = place;
-        this.luxury = luxury;
         this.comment = comment;
     }
 
@@ -42,8 +41,6 @@ public class Purchase implements Parcelable {
         this.date = new Date(src.readLong());
         this.type = src.readInt();
         this.place = src.readString();
-        // luxury == true if byte != 0
-        this.luxury = src.readByte() != 0;
         this.comment = src.readString();
     }
 
@@ -56,8 +53,6 @@ public class Purchase implements Parcelable {
         dest.writeLong(date.getTime());
         dest.writeInt(type);
         dest.writeString(place);
-        // If luxury == true, byte == 1
-        dest.writeByte((byte) (luxury ? 1 : 0));
         dest.writeString(comment);
     }
 
@@ -96,10 +91,6 @@ public class Purchase implements Parcelable {
         return type;
     }
 
-    public boolean getLuxury() {
-        return luxury;
-    }
-
     public String getPlace() {
         return place;
     }
@@ -126,10 +117,6 @@ public class Purchase implements Parcelable {
 
     public void setType(int type) {
         this.type = type;
-    }
-
-    public void setLuxury(boolean luxury) {
-        this.luxury = luxury;
     }
 
     public void setPlace(String place) {
