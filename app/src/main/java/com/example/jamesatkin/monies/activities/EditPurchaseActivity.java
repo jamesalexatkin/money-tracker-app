@@ -56,5 +56,6 @@ public class EditPurchaseActivity extends PurchaseActivity {
         MainActivity.db.updatePurchase(purchase);
 
         Toast.makeText(getApplicationContext(), "Purchase updated!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

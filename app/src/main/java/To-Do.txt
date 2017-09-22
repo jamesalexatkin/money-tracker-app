@@ -5,6 +5,10 @@
 
 //CHANGE TYPE TO BE STORED AS INT IN PURCHASE, NOT STRING
 
+*Clean code all round
+*Add Javadocs/method summaries
+/Add autocorrect to EditTexts
+
 MainActivity
 *Fix icon sizes on buttons
 *Fix buttons issue when turned landscape
@@ -12,11 +16,12 @@ MainActivity
 AddPurchaseActivity
 /Fix luxury boolean [this will be moved to type]
 *Add validation
-*Add calendar for date
+/Add calendar for date
 /Add dropdown for types
 *Change textview ids so that they are lower case
 /Abstract the layout page
 /Remove luxury field
+/Make it so it closes when the user has pressed finish
 
 
 EditPurchaseActivity
@@ -27,6 +32,7 @@ EditPurchaseActivity
 
 ViewPurchasesActivity
 /Display items in date order
+*Fix changes not displayed immediately issue
 
 
 /Create 'AddTypeActivity'

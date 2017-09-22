@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/field_name"
-        android:inputType="textCapSentences"
+        android:inputType="textCapSentences|textAutoCorrect"
         android:layout_margin="8dp"/>
 
     <CheckBox

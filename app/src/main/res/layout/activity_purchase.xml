@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/field_name"
-        android:inputType="textCapSentences"
+        android:inputType="textCapSentences|textAutoCorrect"
         android:layout_margin="8dp"/>
 
     <LinearLayout
@@ -32,8 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
-            android:editable="false"
+            android:focusable="false"
             android:hint="@string/field_date"
+            android:cursorVisible="false"
             android:inputType="date"
             android:layout_margin="8dp"
             />
@@ -42,14 +43,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <!--<EditText-->
-            <!--android:id="@+id/txt_Type"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:hint="@string/field_type"-->
-            <!--android:inputType="text" />-->
 
         <Spinner
             android:id="@+id/spinner_Type"
@@ -63,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/field_place"
-        android:inputType="textCapSentences"
+        android:inputType="textCapSentences|textAutoCorrect"
         android:layout_margin="8dp"/>
 
     <EditText
@@ -71,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/field_comment"
-        android:inputType="textCapSentences"
+        android:inputType="textCapSentences|textAutoCorrect"
         android:layout_margin="8dp"/>
 
     <Button

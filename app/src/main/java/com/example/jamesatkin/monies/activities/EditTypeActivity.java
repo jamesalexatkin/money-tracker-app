@@ -39,5 +39,6 @@ public class EditTypeActivity extends TypeActivity {
         MainActivity.db.updateType(type);
 
         Toast.makeText(getApplicationContext(), "Type updated!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

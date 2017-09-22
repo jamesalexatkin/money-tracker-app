@@ -20,6 +20,7 @@ import static android.media.CamcorderProfile.get;
 public class ViewPurchasesActivity extends AppCompatActivity {
 
     private ListView listView;
+    private PurchaseAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +28,9 @@ public class ViewPurchasesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_purchases);
 
         listView = (ListView) findViewById(R.id.list_purchases);
-        // Return all results from database
-        final ArrayList<Purchase> purchaseList = MainActivity.db.getAllPurchases();
 
-        PurchaseAdapter adapter = new PurchaseAdapter(this, purchaseList);
+        // Set adapter
+        adapter = new PurchaseAdapter(this, MainActivity.db.getAllPurchases());
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new OnItemClickListener() {
@@ -43,15 +43,13 @@ public class ViewPurchasesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//        String[] listItems = new String[purchaseList.size()];
-//
-//        for (int i = 0; i < purchaseList.size(); i++) {
-//            Purchase purchase = purchaseList.get(i);
-//            listItems[i] = purchase.getName();
-//        }
-//
-//        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
-//        listView.setAdapter(adapter);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+
+        adapter.swapItems(MainActivity.db.getAllPurchases());
+    }
+
 }

@@ -7,7 +7,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.jamesatkin.monies.activities.MainActivity;
+
 import java.util.ArrayList;
+
+import static android.R.string.no;
 
 public class PurchaseAdapter extends BaseAdapter {
     private Context context;
@@ -49,5 +53,10 @@ public class PurchaseAdapter extends BaseAdapter {
         costTextView.setText(purchase.getCostAsString());
 
         return rowView;
+    }
+
+    public void swapItems(ArrayList<Purchase> allPurchases) {
+        this.dataSource = MainActivity.db.getAllPurchases();
+        notifyDataSetChanged();
     }
 }

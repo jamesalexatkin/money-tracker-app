@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.jamesatkin.monies.activities.MainActivity;
+
 import java.util.ArrayList;
 
 public class TypeAdapter extends BaseAdapter {
@@ -48,5 +50,10 @@ public class TypeAdapter extends BaseAdapter {
         luxuryTextView.setText(s);
 
         return rowView;
+    }
+
+    public void swapItems(ArrayList<Type> allTypes) {
+        this.dataSource = MainActivity.db.getAllTypes();
+        notifyDataSetChanged();
     }
 }

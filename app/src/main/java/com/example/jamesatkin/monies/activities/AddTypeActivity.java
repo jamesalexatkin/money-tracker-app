@@ -28,5 +28,6 @@ public class AddTypeActivity extends TypeActivity {
 
         //Display confirmation message
         Toast.makeText(getApplicationContext(), "Type added!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

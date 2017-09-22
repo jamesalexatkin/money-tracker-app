@@ -4,26 +4,21 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.Time;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.jamesatkin.monies.MoneyTextWatcher;
 import com.example.jamesatkin.monies.Purchase;
 import com.example.jamesatkin.monies.R;
-import com.example.jamesatkin.monies.Type;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public abstract class PurchaseActivity extends AppCompatActivity {
     protected String name;
@@ -32,6 +27,11 @@ public abstract class PurchaseActivity extends AppCompatActivity {
     protected int type;
     protected String place;
     protected String comment;
+
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private EditText dateView;
+    private int year, month, day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,34 @@ public abstract class PurchaseActivity extends AppCompatActivity {
         Spinner dropdown = (Spinner)findViewById(R.id.spinner_Type);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.typeNames);
         dropdown.setAdapter(adapter);
+
+
+
+        dateView = (EditText) findViewById(R.id.txt_Date);
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        updateDate(year, month+1, day);
+
+
+
+
+//        dateView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View view, boolean hasFocus) {
+//                if (hasFocus) {
+//                    Toast.makeText(getApplicationContext(), "Got the focus", Toast.LENGTH_LONG).show();
+//                    setDate(view);
+//                }
+//            }
+//        });
+        dateView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDate(view);
+            }
+        });
     }
 
     public abstract void onFinishClicked(View view);
@@ -92,5 +120,42 @@ public abstract class PurchaseActivity extends AppCompatActivity {
 
         Purchase purchase = new Purchase(id, name, cost, date, type, place, comment);
         return purchase;
+    }
+
+
+    @SuppressWarnings("deprecation")
+    protected void setDate(View view) {
+        showDialog(999);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this,
+                    dateListener, year, month, day);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener dateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+                    updateDate(arg1, arg2+1, arg3);
+                }
+            };
+
+    private void updateDate(int year, int month, int day) {
+        String dayString = padWithZero(day);
+        String monthString = padWithZero(month);
+        dateView.setText(dayString + "/" + monthString + "/" + year);
+    }
+
+    private String padWithZero(int num) {
+        if (num < 10) {
+            return "0" + num;
+        }
+        else return String.valueOf(num);
     }
 }

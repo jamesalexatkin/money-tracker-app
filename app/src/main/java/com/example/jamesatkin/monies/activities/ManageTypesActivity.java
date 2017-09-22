@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class ManageTypesActivity extends AppCompatActivity {
 
     private ListView listView;
+    private TypeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +27,8 @@ public class ManageTypesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manage_types);
 
         listView = (ListView) findViewById(R.id.list_types);
-        // Return all results from database
-        TypeAdapter adapter = new TypeAdapter(this, MainActivity.db.getAllTypes());
+        // Set adapter
+        adapter = new TypeAdapter(this, MainActivity.db.getAllTypes());
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new OnItemClickListener() {
@@ -45,5 +46,12 @@ public class ManageTypesActivity extends AppCompatActivity {
     public void onAddTypeClicked(View view) {
         Intent intent = new Intent(this, AddTypeActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+
+        adapter.swapItems(MainActivity.db.getAllTypes());
     }
 }
