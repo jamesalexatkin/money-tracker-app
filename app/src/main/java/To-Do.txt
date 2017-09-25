@@ -7,6 +7,8 @@
 
 *Clean code all round
 *Add Javadocs/method summaries
+*Abstract layouts
+*Check fields and methods to see if any can be abstracted
 /Add autocorrect to EditTexts
 
 MainActivity
@@ -34,6 +36,9 @@ EditPurchaseActivity
 ViewPurchasesActivity
 /Display items in date order
 /Fix changes not displayed immediately issue
+*Figure out how to do sorting
+*Add hold-down feature
+*Add floating action button
 
 EditTypeActivity
 *Add lock on deletion of type which is in use

@@ -29,7 +29,7 @@ public class EditTypeActivity extends TypeActivity {
         EditText textView = (EditText) findViewById(R.id.txt_Name);
         textView.setText(type.getName());
 
-        CheckBox checkBoxLuxury = (CheckBox) findViewById(R.id.checkbox_luxury);
+        checkBoxLuxury = (CheckBox) findViewById(R.id.checkbox_luxury);
         checkBoxLuxury.setChecked(type.getLuxury());
     }
 
