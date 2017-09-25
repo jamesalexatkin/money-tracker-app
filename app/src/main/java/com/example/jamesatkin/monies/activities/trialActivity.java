@@ -13,7 +13,7 @@ public class trialActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trial);
+        setContentView(R.layout.activity_trial2);
 
         LinearLayout addPurchase = (LinearLayout)findViewById(R.id.ll_addPurchase);
         addPurchase.setOnClickListener(new View.OnClickListener() {
