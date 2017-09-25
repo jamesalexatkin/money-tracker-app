@@ -38,44 +38,12 @@ public abstract class PurchaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase);
 
-        // Add listener to Cost field to make it behave correctly
-        EditText costField = (EditText) findViewById(R.id.txt_Cost);
-        costField.addTextChangedListener(new MoneyTextWatcher(costField));
-        costField.setText("£0.00");
-
-
-        // Set up spinner
-        Spinner dropdown = (Spinner)findViewById(R.id.spinner_Type);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.typeNames);
-        dropdown.setAdapter(adapter);
+        initCostField();
+        initTypeField();
+        initDateField();
 
 
 
-        dateView = (EditText) findViewById(R.id.txt_Date);
-        calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
-        updateDate(year, month+1, day);
-
-
-
-
-//        dateView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View view, boolean hasFocus) {
-//                if (hasFocus) {
-//                    Toast.makeText(getApplicationContext(), "Got the focus", Toast.LENGTH_LONG).show();
-//                    setDate(view);
-//                }
-//            }
-//        });
-        dateView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setDate(view);
-            }
-        });
     }
 
     public abstract void onFinishClicked(View view);
@@ -104,7 +72,6 @@ public abstract class PurchaseActivity extends AppCompatActivity {
         // Type
         Spinner spinner = (Spinner) findViewById(R.id.spinner_Type);
         content = spinner.getSelectedItem().toString();
-
         type = MainActivity.getTypeId(content);
 
         // Place
@@ -157,5 +124,35 @@ public abstract class PurchaseActivity extends AppCompatActivity {
             return "0" + num;
         }
         else return String.valueOf(num);
+    }
+
+    protected void initCostField() {
+        // Add listener to Cost field to make it behave correctly
+        EditText costField = (EditText) findViewById(R.id.txt_Cost);
+        costField.addTextChangedListener(new MoneyTextWatcher(costField));
+        costField.setText("£0.00");
+    }
+
+    protected void initTypeField() {
+        // Set up spinner
+        Spinner dropdown = (Spinner)findViewById(R.id.spinner_Type);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.getTypeNames());
+        dropdown.setAdapter(adapter);
+    }
+
+    protected void initDateField() {
+        dateView = (EditText) findViewById(R.id.txt_Date);
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        updateDate(year, month+1, day);
+
+        dateView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDate(view);
+            }
+        });
     }
 }

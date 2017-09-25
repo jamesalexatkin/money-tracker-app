@@ -51,5 +51,4 @@ public class ViewPurchasesActivity extends AppCompatActivity {
 
         adapter.swapItems(MainActivity.db.getAllPurchases());
     }
-
 }

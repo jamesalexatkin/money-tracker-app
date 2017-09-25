@@ -19,17 +19,21 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button;
     public static DatabaseHandler db;
-    public static String[] typeNames;
+    private static String[] typeNames;
     public static int purchaseIdCount = 0;
     public static int typeIdCount = 0;
 
-    public static String[] getTypeNames() {
+    public static void updateTypeNames() {
         ArrayList<Type> typesList = db.getAllTypes();
         String[] typeNamesArray = new String[typesList.size()];
         for (int i = 0; i < typeNamesArray.length; i++) {
             typeNamesArray[i] = typesList.get(i).getName();
         }
-        return typeNamesArray;
+        typeNames = typeNamesArray;
+    }
+
+    public static String[] getTypeNames() {
+        return typeNames;
     }
 
     @Override
@@ -38,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db = new DatabaseHandler(this);
-        typeNames = getTypeNames();
+        updateTypeNames();
+
+        //Button btn = (Button) findViewById(R.id.btn_addPurchase);
+
 
         //setButtonSizes();
         //setButtonImages();

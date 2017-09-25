@@ -22,25 +22,27 @@ AddPurchaseActivity
 /Abstract the layout page
 /Remove luxury field
 /Make it so it closes when the user has pressed finish
+*Fix issue where changing type name doesn't take effect on PurchaseActivity
 
 
 EditPurchaseActivity
 /Pass purchase through to edit screen
-*Add delete functionality
+/Add delete functionality
 /Fix update functionality
 
 
 ViewPurchasesActivity
 /Display items in date order
-*Fix changes not displayed immediately issue
+/Fix changes not displayed immediately issue
 
+EditTypeActivity
+*Add lock on deletion of type which is in use
 
 /Create 'AddTypeActivity'
 /remove luxury boolean from a purchase and move it to type
 /fix radio button
 
 ManageTypesActivity
-*Change ListView to RecyclerView
 *Fix floating action button being green
 
 Settings
