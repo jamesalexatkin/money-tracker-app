@@ -14,26 +14,24 @@
             android:id="@+id/ll_addPurchase"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-
             android:layout_margin="16dp"
             android:layout_weight="0.5"
             android:gravity="center"
-
             android:orientation="vertical">
 
             <ImageButton
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.72"
-                android:scaleType="fitCenter"
-                android:background="#FFFFFFFF"
+                android:layout_height="0dp"
+                android:layout_weight="0.85"
+                android:background="#00ffffff"
                 android:onClick="onAddPurchaseClicked"
-                android:src="@drawable/ic_add_shopping_cart_black_24dp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/vector_add_purchase" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
+                android:layout_height="0dp"
+                android:layout_weight="0.15"
                 android:text="@string/activity_addPurchase"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryText"
@@ -44,24 +42,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
-
             android:layout_weight="0.5"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageButton
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.72"
-                android:scaleType="fitCenter"
-                android:background="#FFFFFFFF"
+                android:layout_height="0dp"
+                android:layout_weight="0.85"
+                android:background="#00ffffff"
                 android:onClick="onViewPurchasesClicked"
-                android:src="@drawable/ic_list_black_24dp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/vector_view_purchases" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
+                android:layout_height="0dp"
+                android:layout_weight="0.15"
                 android:text="@string/activity_viewPurchases"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryText"
@@ -80,23 +77,22 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
-
             android:layout_weight="0.5"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageButton
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.72"
-                android:background="#FFFFFFFF"
+                android:layout_height="0dp"
+                android:layout_weight="0.85"
+                android:background="#00ffffff"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_timeline_black_24dp" />
+                android:src="@drawable/vector_statistics" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
+                android:layout_height="0dp"
+                android:layout_weight="0.15"
                 android:text="@string/activity_statistics"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryText"
@@ -107,26 +103,24 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
-
             android:layout_weight="0.5"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageButton
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.72"
-                android:scaleType="fitCenter"
-                android:background="#FFFFFFFF"
+                android:layout_height="0dp"
+                android:layout_weight="0.85"
+                android:background="#00ffffff"
                 android:onClick="onSettingsClicked"
-                android:src="@drawable/ic_settings_black_24dp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/vector_settings" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
+                android:layout_height="0dp"
+                android:layout_weight="0.15"
                 android:text="@string/activity_settings"
-
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="20sp" />
