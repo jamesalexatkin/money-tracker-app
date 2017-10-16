@@ -48,7 +48,10 @@
             android:parentActivityName=".activities.ManageTypesActivity" />
         <activity android:name=".activities.TypeActivity" />
         <activity android:name=".activities.trialActivity"></activity>
-        <activity android:name=".activities.StatisticsActivity"></activity>
+        <activity
+            android:name=".activities.StatisticsActivity"
+            android:label="Statistics"
+            android:parentActivityName=".activities.MainActivity"></activity>
     </application>
 
 </manifest>

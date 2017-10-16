@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <Spinner
+        android:id="@+id/spinner_Period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="8dp"
+        android:layout_toLeftOf="@+id/button"
+        android:layout_weight="8" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="2"
+        android:onClick="onGoClicked"
+        android:text="Go" />
+
+    <TextView
+        android:id="@+id/txt_title"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner_Period"
+        android:text="TITLE"
+        android:textAlignment="center"
+        android:textSize="16dp"/>
 
-        <Spinner
-            android:id="@+id/spinner_Period"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
-            android:layout_margin="8dp"/>
-        
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Go"
-            android:onClick="onGoClicked"/>
-
-    </LinearLayout>
-
-    <com.jjoe64.graphview.GraphView
+    <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/graph"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"/>
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/txt_title" />
 
-</LinearLayout>
+
+</RelativeLayout>

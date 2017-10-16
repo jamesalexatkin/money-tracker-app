@@ -1,15 +1,22 @@
 package com.example.jamesatkin.monies;
 
+import android.app.LauncherActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.jamesatkin.monies.activities.MainActivity;
+
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.jamesatkin.monies.activities.MainActivity.getTypeNames;
+import static com.example.jamesatkin.monies.activities.MainActivity.purchaseIdCount;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -295,5 +302,52 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.delete(TABLE_TYPES, KEY_TYPES_ID + " = ?",
                 new String[] { String.valueOf(type.getId()) });
         db.close();
+    }
+
+
+    public float[] getByPeriod (String period) {
+        String[] typeNames = MainActivity.getTypeNames();
+        float[] costs = new float[typeNames.length];
+
+        String sumQuery = "";
+
+        switch (period) {
+            case "Week":
+
+                break;
+            case "Month":
+                break;
+            case "Year":
+                break;
+            case "All time":
+                for (int i = 0; i < typeNames.length; i++) {
+                    sumQuery = "SELECT SUM(" + KEY_PURCHASES_COST + ") FROM " + TABLE_PURCHASES + " WHERE " + KEY_PURCHASES_TYPE + " = " + i;
+                    costs[i] = performSumQuery(sumQuery);
+                }
+                break;
+            default:
+                break;
+        }
+
+
+
+
+        return costs;
+    }
+
+    private float performSumQuery(String sumQuery) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sumQuery, null);
+
+        float sum = 0.0f;
+
+        // Looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                sum = (Float.parseFloat(cursor.getString(0)));
+            } while (cursor.moveToNext());
+        }
+
+        return sum;
     }
 }

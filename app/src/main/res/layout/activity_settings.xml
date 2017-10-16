@@ -9,14 +9,14 @@
 
     <Button
         android:id="@+id/btn_manageTypes"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Manage Types"
         android:onClick="onManageTypesClicked"/>
 
     <Button
         android:id="@+id/btn_export"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Export"
         android:onClick="onExportClicked"/>
