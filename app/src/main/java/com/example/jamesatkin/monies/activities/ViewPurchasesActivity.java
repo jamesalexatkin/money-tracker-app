@@ -10,10 +10,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 
 import com.example.jamesatkin.monies.Purchase;
-import com.example.jamesatkin.monies.PurchaseAdapter;
+import com.example.jamesatkin.monies.adapters.PurchaseAdapter;
 import com.example.jamesatkin.monies.R;
-
-import java.util.ArrayList;
 
 import static android.media.CamcorderProfile.get;
 

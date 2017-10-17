@@ -25,4 +25,9 @@ public class AddTypeActivity extends TypeActivity {
         Toast.makeText(getApplicationContext(), "Type added!", Toast.LENGTH_SHORT).show();
         finish();
     }
+
+    public void onTypeIconClicked(View view) {
+        IconSelectDialog dialog = new IconSelectDialog();
+        dialog.showDialog(AddTypeActivity.this, "");
+    }
 }

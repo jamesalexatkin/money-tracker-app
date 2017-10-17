@@ -44,4 +44,7 @@ public abstract class TypeActivity extends AppCompatActivity {
     public void onCheckBoxLuxuryClicked(View view) {
         luxury = checkBoxLuxury.isChecked();
     }
+
+    public void onTypeIconClicked(View view) {
+    }
 }

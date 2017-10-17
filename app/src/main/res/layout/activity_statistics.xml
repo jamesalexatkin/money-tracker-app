@@ -24,21 +24,42 @@
         android:onClick="onGoClicked"
         android:text="Go" />
 
+    <Button
+        android:id="@+id/btn_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button"
+        android:text="l"
+        android:onClick="onLeftClicked"/>
+
+    <Button
+        android:id="@+id/btn_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/button"
+        android:text="r"
+        android:onClick="onRightClicked"/>
+    
     <TextView
         android:id="@+id/txt_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinner_Period"
         android:text="TITLE"
         android:textAlignment="center"
-        android:textSize="16dp"/>
+        android:textSize="16dp"
+        android:layout_toLeftOf="@id/btn_right"
+        android:layout_toRightOf="@id/btn_left"/>
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/graph"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/txt_title" />
+        android:layout_below="@+id/txt_title"
+        />
 
 
 </RelativeLayout>

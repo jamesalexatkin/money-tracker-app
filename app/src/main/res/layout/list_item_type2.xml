@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/img_type"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/if_020_258_calendar_date_schedule_event_month_time_management_weekends_holidays_event_1240410"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="8dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_margin="8dp"
+        android:layout_toRightOf="@id/img_type"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/txt_luxury"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_margin="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

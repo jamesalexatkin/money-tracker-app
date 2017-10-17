@@ -8,13 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.example.jamesatkin.monies.Purchase;
-import com.example.jamesatkin.monies.PurchaseAdapter;
 import com.example.jamesatkin.monies.R;
 import com.example.jamesatkin.monies.Type;
-import com.example.jamesatkin.monies.TypeAdapter;
-
-import java.util.ArrayList;
+import com.example.jamesatkin.monies.adapters.TypeAdapter;
 
 public class ManageTypesActivity extends AppCompatActivity {
 

@@ -62,4 +62,10 @@ public class EditTypeActivity extends TypeActivity {
                 .setNegativeButton("No", null)
                 .show();
     }
+
+    public void onTypeIconClicked(View view) {
+        IconSelectDialog dialog = new IconSelectDialog();
+        dialog.showDialog(EditTypeActivity.this, "");
+    }
+
 }

@@ -13,6 +13,13 @@
         android:inputType="textCapSentences|textAutoCorrect"
         android:layout_margin="8dp"/>
 
+    <ImageButton
+        android:id="@+id/btn_typeIcon"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:onClick="onTypeIconClicked"
+        />
+    
     <CheckBox
         android:id="@+id/checkbox_luxury"
         android:layout_width="match_parent"

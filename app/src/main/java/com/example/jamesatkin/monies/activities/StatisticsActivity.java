@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+
 import com.example.jamesatkin.monies.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -31,6 +32,10 @@ public class StatisticsActivity extends AppCompatActivity {
     private BarData data;
     private ArrayList<String> labels;
     private String period;
+
+    private int weekOffset;
+    private int monthOffset;
+    private int yearOffset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,5 +143,15 @@ public class StatisticsActivity extends AppCompatActivity {
 
         TextView txtTitle = (TextView) findViewById(R.id.txt_title);
         txtTitle.setText(title);
+    }
+
+    private void onLeftClicked() {
+        // MOVE PERIOD LEFT, DECREMENT
+
+        // UPDATE TITLE
+    }
+
+    private void onRightClicked() {
+
     }
 }

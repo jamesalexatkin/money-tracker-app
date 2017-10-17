@@ -1,4 +1,4 @@
-package com.example.jamesatkin.monies;
+package com.example.jamesatkin.monies.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,16 +7,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.jamesatkin.monies.Purchase;
+import com.example.jamesatkin.monies.R;
 import com.example.jamesatkin.monies.activities.MainActivity;
 
 import java.util.ArrayList;
 
-public class TypeAdapter extends BaseAdapter {
+import static android.R.string.no;
+
+public class PurchaseAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
-    private ArrayList<Type> dataSource;
+    private ArrayList<Purchase> dataSource;
 
-    public TypeAdapter(Context context, ArrayList<Type> items) {
+    public PurchaseAdapter(Context context, ArrayList<Purchase> items) {
         this.context = context;
         dataSource = items;
         inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -39,21 +43,22 @@ public class TypeAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View rowView = inflater.inflate(R.layout.list_item_type, parent, false);
+        View rowView = inflater.inflate(R.layout.list_item_purchase2, parent, false);
 
+        TextView dateTextView = (TextView) rowView.findViewById(R.id.txt_date);
         TextView nameTextView = (TextView) rowView.findViewById(R.id.txt_name);
-        TextView luxuryTextView = (TextView) rowView.findViewById(R.id.txt_luxury);
+        TextView costTextView = (TextView) rowView.findViewById(R.id.txt_cost);
 
-        Type type = (Type) getItem(position);
-        nameTextView.setText(type.getName());
-        String s = "Luxury: " + type.getLuxury();
-        luxuryTextView.setText(s);
+        Purchase purchase = (Purchase) getItem(position);
+        dateTextView.setText(purchase.getDateAsString("month"));
+        nameTextView.setText(purchase.getName());
+        costTextView.setText(purchase.getCostAsString());
 
         return rowView;
     }
 
-    public void swapItems(ArrayList<Type> allTypes) {
-        this.dataSource = MainActivity.db.getAllTypes();
+    public void swapItems(ArrayList<Purchase> allPurchases) {
+        this.dataSource = MainActivity.db.getAllPurchases();
         notifyDataSetChanged();
     }
 }
