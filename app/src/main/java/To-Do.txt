@@ -1,15 +1,15 @@
 FOR RELEASE:
 *SQL - week, month, year
 *Left and right
-*Icons
+/Icons
     /Get icons
     /Change purchase adapter
     /Change type adapter
-    -Let type store icon
-    -Change type screen to include icon select
-    -Change type class to add icon
-    -Display correct icon in purchase adapter
-    -Display correct icon in type adapter
+    /Let type store icon
+    /Change type screen to include icon select
+    /Change type class to add icon
+    /Display correct icon in purchase adapter
+    /Display correct icon in type adapter
 *Exception with no purchase in type on graph
 *Remove export, or fix
 

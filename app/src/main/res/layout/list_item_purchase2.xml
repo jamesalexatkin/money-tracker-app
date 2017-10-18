@@ -9,7 +9,6 @@
         android:id="@+id/img_type"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@drawable/if_006_114_wineglass_goblet_glass_drink_food_2_513050"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_margin="8dp"

@@ -18,6 +18,7 @@ public abstract class TypeActivity extends AppCompatActivity {
     protected int id;
     protected String name;
     protected boolean luxury;
+    protected int iconId;
 
     protected CheckBox checkBoxLuxury;
 
@@ -37,7 +38,7 @@ public abstract class TypeActivity extends AppCompatActivity {
         String content = textField.getText().toString();
         name = content;
 
-        Type type = new Type(id, name, luxury);
+        Type type = new Type(id, name, iconId, luxury);
         return type;
     }
 

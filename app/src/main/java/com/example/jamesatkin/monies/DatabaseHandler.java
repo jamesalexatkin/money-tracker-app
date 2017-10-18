@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.provider.Contacts.SettingsColumns.KEY;
 import static com.example.jamesatkin.monies.activities.MainActivity.getTypeNames;
 import static com.example.jamesatkin.monies.activities.MainActivity.purchaseIdCount;
 
@@ -22,7 +23,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 7;
 
     // Database Name
     private static final String DATABASE_NAME = "dbManager";
@@ -43,6 +44,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Types table column names
     private static final String KEY_TYPES_ID = "id";
     private static final String KEY_TYPES_NAME = "name";
+    private static final String KEY_TYPES_ICON = "icon";
     private static final String KEY_TYPES_LUXURY = "luxury";
 
     public DatabaseHandler(Context context) {
@@ -63,6 +65,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_TYPES_TABLE = "CREATE TABLE " + TABLE_TYPES + "("
                 + KEY_TYPES_ID + " INTEGER PRIMARY KEY, "
                 + KEY_TYPES_NAME + " TEXT, "
+                + KEY_TYPES_ICON + " INTEGER, "
                 + KEY_TYPES_LUXURY + " BOOLEAN "
                 + ")";
         db.execSQL(CREATE_PURCHASES_TABLE);
@@ -77,6 +80,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // Create tables again
         onCreate(db);
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if (!db.isReadOnly()) {
+            // Enable foreign key constraints
+            db.execSQL("PRAGMA foreign_keys=ON;");
+        }
     }
 
 
@@ -110,9 +122,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Purchase getPurchase(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_PURCHASES, new String[] {KEY_PURCHASES_ID,
+        Cursor cursor = db.query(TABLE_PURCHASES, new String[]{KEY_PURCHASES_ID,
                         KEY_PURCHASES_NAME, KEY_PURCHASES_COST, KEY_PURCHASES_DATE, KEY_PURCHASES_TYPE, KEY_PURCHASES_PLACE, KEY_PURCHASES_COMMENT}, KEY_PURCHASES_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
+                new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
@@ -199,20 +211,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // updating row
         return db.update(TABLE_PURCHASES, values, KEY_PURCHASES_ID + " = ?",
-                new String[] { String.valueOf(purchase.getId()) });
+                new String[]{String.valueOf(purchase.getId())});
     }
 
     // Deleting single purchase
     public void deletePurchase(Purchase purchase) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_PURCHASES, KEY_PURCHASES_ID + " = ?",
-                new String[] { String.valueOf(purchase.getId()) });
+                new String[]{String.valueOf(purchase.getId())});
         db.close();
     }
-
-
-
-
 
 
     // Type methods
@@ -223,6 +231,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_TYPES_NAME, type.getName());
+        values.put(KEY_TYPES_ICON, type.getIconId());
         values.put(KEY_TYPES_LUXURY, type.getLuxury());
 
         // Inserting Row
@@ -235,15 +244,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_TYPES, new String[] {KEY_TYPES_ID,
-                        KEY_TYPES_NAME, KEY_TYPES_LUXURY}, KEY_TYPES_ID + "=?",
+                        KEY_TYPES_NAME, KEY_TYPES_ICON, KEY_TYPES_LUXURY}, KEY_TYPES_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
+//        String selectQuery = "SELECT " + KEY_TYPES_ID + ", " + KEY_TYPES_NAME + ", " + KEY_TYPES_ICON + ", " + KEY_TYPES_LUXURY + " FROM " + TABLE_TYPES + " WHERE " + KEY_TYPES_ID + " = " + id + ";";
+//        Cursor cursor = db.rawQuery(selectQuery, null);
 
-        Type type = new Type(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1),
-                Boolean.valueOf(cursor.getString(2)));
-         return type;
+        try {
+            if (cursor.moveToFirst()) {
+
+                String s = cursor.getString(0);
+
+                Type type = new Type(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1),
+                        Integer.parseInt(cursor.getString(2)),
+                        Boolean.valueOf(cursor.getString(3)));
+                return type;
+            }
+        }
+        catch (Exception e) {
+
+        }
+        return null;
     }
 
     // Getting all types
@@ -261,8 +282,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Type type = new Type();
                 type.setId(Integer.parseInt(cursor.getString(0)));
                 type.setName(cursor.getString(1));
+                type.setIconId(Integer.parseInt(cursor.getString(2)));
                 // For some reason, boolean is stored as 0 or 1, so compares int value of string to 1 to check if true or false
-                type.setLuxury(Boolean.valueOf(Integer.parseInt(cursor.getString(2)) == 1));
+                type.setLuxury(Boolean.valueOf(Integer.parseInt(cursor.getString(3)) == 1));
                 // Adding type to list
                 typeList.add(type);
             } while (cursor.moveToNext());
@@ -289,23 +311,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_TYPES_NAME, type.getName());
+        values.put(KEY_TYPES_ICON, type.getIconId());
         values.put(KEY_TYPES_LUXURY, type.getLuxury());
 
         // updating row
         return db.update(TABLE_TYPES, values, KEY_TYPES_ID + " = ?",
-                new String[] { String.valueOf(type.getId()) });
+                new String[]{String.valueOf(type.getId())});
     }
 
     // Deleting single type
     public void deleteType(Type type) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_TYPES, KEY_TYPES_ID + " = ?",
-                new String[] { String.valueOf(type.getId()) });
+                new String[]{String.valueOf(type.getId())});
         db.close();
     }
 
 
-    public float[] getByPeriod (String period) {
+    public float[] getByPeriod(String period) {
         String[] typeNames = MainActivity.getTypeNames();
         float[] costs = new float[typeNames.length];
 
@@ -328,8 +351,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             default:
                 break;
         }
-
-
 
 
         return costs;

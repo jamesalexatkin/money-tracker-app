@@ -12,10 +12,9 @@ import android.widget.Button;
 import com.example.jamesatkin.monies.DatabaseHandler;
 import com.example.jamesatkin.monies.R;
 import com.example.jamesatkin.monies.Type;
+import com.example.jamesatkin.monies.TypeIcon;
 
 import java.util.ArrayList;
-
-import static android.R.attr.type;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private static String[] typeNames;
     private static ArrayList<TypeIcon> typeIcons;
     public static int purchaseIdCount = 0;
-    public static int typeIdCount = 0;
+    // HACKY WORKAROUND
+    public static int typeIdCount = -1;
 
     public static void updateTypeNames() {
         ArrayList<Type> typesList = db.getAllTypes();
@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         db = new DatabaseHandler(this);
         updateTypeNames();
         initTypeIcons();
+
+//        Type def = new Type(typeIdCount++, "default", 4, false);
+//        db.addType(def);
 
         //Button btn = (Button) findViewById(R.id.btn_addPurchase);
 
@@ -135,15 +138,25 @@ public class MainActivity extends AppCompatActivity {
     private void initTypeIcons() {
         typeIcons = new ArrayList<>();
         int count = 0;
-        typeIcons.add(new TypeIcon(count++, "if_001_029_sign_railway_512397.xml"));
-        typeIcons.add(new TypeIcon(count++, "if_006_114_wineglass_goblet_glass_drink_food_2_513050.xml"));
-        typeIcons.add(new TypeIcon(count++, "if_006_141_pizza_piece_food_1639350.xml"));
-        typeIcons.add(new TypeIcon(count++, "if_006_142_grocery_food_gastronomy_bag_1639349.xml"));
-        typeIcons.add(new TypeIcon(count++, "if_014_046_cash_coin_coins_money_finance_currency_557026.xml"));
-        typeIcons.add(new TypeIcon(count++, "if_015_038_give_present_gift_hand_1240113.xml"));
-        typeIcons.add(new TypeIcon(count++, "if_016_045_baby_shirt_clothes_clothing_wear_521013.xml"));
-        typeIcons.add(new TypeIcon(count++, "if_020_258_calendar_date_schedule_event_month_time_management_weekends_holidays_event_1240410.xml"));
-        typeIcons.add(new TypeIcon(count++, "if_023_021_tools_rule_pencil_applications_557261.xml"));
-        typeIcons.add(new TypeIcon(count++, "if_025_022_oil_gas_petrol_gasoline_engine_fuel_car_512251.xml"));
+        typeIcons.add(new TypeIcon(count++, "if_001_029_sign_railway_512397"));
+        typeIcons.add(new TypeIcon(count++, "if_006_114_wineglass_goblet_glass_drink_food_2_513050"));
+        typeIcons.add(new TypeIcon(count++, "if_006_141_pizza_piece_food_1639350"));
+        typeIcons.add(new TypeIcon(count++, "if_006_142_grocery_food_gastronomy_bag_1639349"));
+        typeIcons.add(new TypeIcon(count++, "if_014_046_cash_coin_coins_money_finance_currency_557026"));
+        typeIcons.add(new TypeIcon(count++, "if_015_038_give_present_gift_hand_1240113"));
+        typeIcons.add(new TypeIcon(count++, "if_016_045_baby_shirt_clothes_clothing_wear_521013"));
+        typeIcons.add(new TypeIcon(count++, "if_020_258_calendar_date_schedule_event_month_time_management_weekends_holidays_event_1240410"));
+        typeIcons.add(new TypeIcon(count++, "if_023_021_tools_rule_pencil_applications_557261"));
+        typeIcons.add(new TypeIcon(count++, "if_025_022_oil_gas_petrol_gasoline_engine_fuel_car_512251"));
+    }
+
+    public static TypeIcon getTypeIconById(int typeIconId) {
+        for (TypeIcon t : typeIcons) {
+            if (t.getId() == typeIconId) {
+                return t;
+            }
+        }
+
+        return null;
     }
 }
