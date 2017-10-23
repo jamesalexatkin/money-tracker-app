@@ -362,11 +362,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         float sum = 0.0f;
 
-        // Looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                sum = (Float.parseFloat(cursor.getString(0)));
-            } while (cursor.moveToNext());
+
+        try {
+            // Looping through all rows and adding to list
+            if (cursor.moveToFirst()) {
+                do {
+                    sum = (Float.parseFloat(cursor.getString(0)));
+                } while (cursor.moveToNext());
+            }
+        }
+        catch (Exception e) {
+
         }
 
         return sum;

@@ -10,7 +10,7 @@ FOR RELEASE:
     /Change type class to add icon
     /Display correct icon in purchase adapter
     /Display correct icon in type adapter
-*Exception with no purchase in type on graph
+/Exception with no purchase in type on graph
 *Remove export, or fix
 
 
