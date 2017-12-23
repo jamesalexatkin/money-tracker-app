@@ -1,0 +1,16 @@
+CREATE TABLE types (
+                id INTEGER PRIMARY KEY NOT NULL,
+                name TEXT,
+                icon INTEGER NOT NULL,
+                luxury BOOLEAN DEFAULT FALSE
+                );
+
+CREATE TABLE purchases(
+                id INTEGER PRIMARY KEY NOT NULL,
+                name TEXT,
+                cost FLOAT CHECK(cost>=0.0),
+                date INTEGER DEFAULT 0,
+                type INTEGER REFERENCES types(id) ON DELETE CASCADE,
+                place TEXT,
+                comment TEXT
+                );

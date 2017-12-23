@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.id;
 import static android.provider.Contacts.SettingsColumns.KEY;
 import static com.example.jamesatkin.monies.activities.MainActivity.getTypeNames;
 import static com.example.jamesatkin.monies.activities.MainActivity.purchaseIdCount;
@@ -23,7 +24,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
 
     // Database Name
     private static final String DATABASE_NAME = "dbManager";
@@ -53,21 +54,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_PURCHASES_TABLE = "CREATE TABLE " + TABLE_PURCHASES + "("
-                + KEY_PURCHASES_ID + " INTEGER PRIMARY KEY, "
-                + KEY_PURCHASES_NAME + " TEXT, "
-                + KEY_PURCHASES_COST + " FLOAT, "
-                + KEY_PURCHASES_DATE + " INTEGER, "
-                + KEY_PURCHASES_TYPE + " INTEGER, "
-                + KEY_PURCHASES_PLACE + " PLACE, "
-                + KEY_PURCHASES_COMMENT + " COMMENT "
-                + ")";
-        String CREATE_TYPES_TABLE = "CREATE TABLE " + TABLE_TYPES + "("
-                + KEY_TYPES_ID + " INTEGER PRIMARY KEY, "
-                + KEY_TYPES_NAME + " TEXT, "
-                + KEY_TYPES_ICON + " INTEGER, "
-                + KEY_TYPES_LUXURY + " BOOLEAN "
-                + ")";
+        String CREATE_PURCHASES_TABLE = "CREATE TABLE purchases(" +
+                "id INTEGER PRIMARY KEY NOT NULL," +
+                "name TEXT," +
+                "cost FLOAT CHECK(cost>=0.0)," +
+                "date INTEGER DEFAULT 0," +
+                "type INTEGER REFERENCES types(id) ON DELETE CASCADE," +
+                "place TEXT," +
+                "comment TEXT" +
+                ");";
+        String CREATE_TYPES_TABLE = "CREATE TABLE types (" +
+                "id INTEGER PRIMARY KEY NOT NULL," +
+                "name TEXT," +
+                "icon INTEGER NOT NULL," +
+                "luxury BOOLEAN DEFAULT FALSE" +
+                ");";
         db.execSQL(CREATE_PURCHASES_TABLE);
         db.execSQL(CREATE_TYPES_TABLE);
     }
